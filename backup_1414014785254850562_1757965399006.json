@@ -1,0 +1,561 @@
+{
+  "guildId": "1414014785254850562",
+  "guildName": "ConnectHub Community",
+  "createdAt": "2025-09-06T22:29:55.929Z",
+  "roles": [
+    {
+      "id": "1414014785254850562",
+      "name": "@everyone",
+      "color": 0,
+      "permissions": "2222085186637377",
+      "position": 0
+    },
+    {
+      "id": "1414015847248167032",
+      "name": "*",
+      "color": 0,
+      "permissions": "4360663115759615",
+      "position": 29
+    },
+    {
+      "id": "1414016244746817647",
+      "name": "• Creator",
+      "color": 65512,
+      "permissions": "8200",
+      "position": 28
+    },
+    {
+      "id": "1414016586565685340",
+      "name": "• Admin",
+      "color": 10038562,
+      "permissions": "1131004609537985",
+      "position": 23
+    },
+    {
+      "id": "1414017434872188928",
+      "name": "• Botok",
+      "color": 16751616,
+      "permissions": "8",
+      "position": 13
+    },
+    {
+      "id": "1414017690527465532",
+      "name": "• Tag",
+      "color": 9807270,
+      "permissions": "1126593614696001",
+      "position": 14
+    },
+    {
+      "id": "1414017961085243554",
+      "name": "• Partner",
+      "color": 15105570,
+      "permissions": "1126593614696001",
+      "position": 19
+    },
+    {
+      "id": "1414018295778115666",
+      "name": "• Deverloper",
+      "color": 42239,
+      "permissions": "1139802581223409",
+      "position": 24
+    },
+    {
+      "id": "1414170369878921277",
+      "name": "• Csapattag",
+      "color": 35359,
+      "permissions": "1126589349089089",
+      "position": 22
+    },
+    {
+      "id": "1414177749429522524",
+      "name": "• Moderator",
+      "color": 16639,
+      "permissions": "1126593678135105",
+      "position": 21
+    },
+    {
+      "id": "1414181796719104085",
+      "name": "fm01",
+      "color": 0,
+      "permissions": "8",
+      "position": 12
+    },
+    {
+      "id": "1414191837698330697",
+      "name": "ConnectHub",
+      "color": 3080447,
+      "permissions": "8",
+      "position": 30
+    },
+    {
+      "id": "1414222838348513365",
+      "name": "carl-bot",
+      "color": 0,
+      "permissions": "573242775563510",
+      "position": 11
+    },
+    {
+      "id": "1414222879259754560",
+      "name": "Ticket Tool",
+      "color": 0,
+      "permissions": "2416045072",
+      "position": 10
+    },
+    {
+      "id": "1414252581013946388",
+      "name": "Tester",
+      "color": 1752220,
+      "permissions": "1126593614693953",
+      "position": 16
+    },
+    {
+      "id": "1414268375772823583",
+      "name": "• bot-fejlesztő",
+      "color": 2123412,
+      "permissions": "0",
+      "position": 9
+    },
+    {
+      "id": "1414297221415043074",
+      "name": "Server Booster",
+      "color": 16023551,
+      "permissions": "140879326465601",
+      "position": 20
+    },
+    {
+      "id": "1414309750472052808",
+      "name": "DISBOARD.org",
+      "color": 0,
+      "permissions": "19473",
+      "position": 8
+    },
+    {
+      "id": "1414317945655394550",
+      "name": "Top.gg",
+      "color": 0,
+      "permissions": "1",
+      "position": 7
+    },
+    {
+      "id": "1414333123101065366",
+      "name": "Bence",
+      "color": 723723,
+      "permissions": "0",
+      "position": 15
+    },
+    {
+      "id": "1414343251955159091",
+      "name": "Muted",
+      "color": 0,
+      "permissions": "1024",
+      "position": 6
+    },
+    {
+      "id": "1414496790002274365",
+      "name": "• DCWITH",
+      "color": 263945,
+      "permissions": "1689543601671745",
+      "position": 25
+    },
+    {
+      "id": "1414626477550604508",
+      "name": "• Barát",
+      "color": 65329,
+      "permissions": "1126593614679617",
+      "position": 17
+    },
+    {
+      "id": "1414684732951625844",
+      "name": "SCDC Bot",
+      "color": 0,
+      "permissions": "140123696193",
+      "position": 5
+    },
+    {
+      "id": "1414865048983310439",
+      "name": "Bot",
+      "color": 2101583,
+      "permissions": "88104882196033",
+      "position": 18
+    },
+    {
+      "id": "1415322891414802512",
+      "name": "• Al leader",
+      "color": 65535,
+      "permissions": "1721826619162615",
+      "position": 27
+    },
+    {
+      "id": "1415795560455344128",
+      "name": "milan szerelme",
+      "color": 4916992,
+      "permissions": "0",
+      "position": 4
+    },
+    {
+      "id": "1416160963119419465",
+      "name": "GiveawayBot",
+      "color": 0,
+      "permissions": "347200",
+      "position": 3
+    },
+    {
+      "id": "1416507531739664485",
+      "name": "• Magic st0ck",
+      "color": 16711680,
+      "permissions": "1126589319466561",
+      "position": 26
+    },
+    {
+      "id": "1416533538081210439",
+      "name": ".milankahh",
+      "color": 10048,
+      "permissions": "8",
+      "position": 2
+    },
+    {
+      "id": "1417227383378808875",
+      "name": "BotRole",
+      "color": 0,
+      "permissions": "8",
+      "position": 1
+    }
+  ],
+  "channels": [
+    {
+      "id": "1414024363933696000",
+      "name": "🔊│beszélgető 1",
+      "type": 2,
+      "parentId": "1414014785887932467",
+      "position": 0,
+      "topic": null
+    },
+    {
+      "id": "1414024543982325921",
+      "name": "💡│ötletek",
+      "type": 15,
+      "parentId": "1414014785887932467",
+      "position": 3,
+      "topic": null
+    },
+    {
+      "id": "1416509194911354930",
+      "name": "🪄│magic-st0ck",
+      "type": 0,
+      "parentId": "1414020019121029191",
+      "position": 4,
+      "topic": null
+    },
+    {
+      "id": "1416515207009927339",
+      "name": "🔇│némítások",
+      "type": 0,
+      "parentId": "1414014785887932468",
+      "position": 8,
+      "topic": null
+    },
+    {
+      "id": "1414024439473115146",
+      "name": "🔊│beszélgető 2",
+      "type": 2,
+      "parentId": "1414014785887932467",
+      "position": 1,
+      "topic": null
+    },
+    {
+      "id": "1415061384533770261",
+      "name": "🎧│inaktív csatorna",
+      "type": 2,
+      "parentId": "1414014785887932467",
+      "position": 2,
+      "topic": null
+    },
+    {
+      "id": "1414024072727232622",
+      "name": "😂│mémek",
+      "type": 0,
+      "parentId": "1414014785887932467",
+      "position": 2,
+      "topic": null
+    },
+    {
+      "id": "1414020508990836746",
+      "name": "🎉│boost",
+      "type": 0,
+      "parentId": "1414020019121029191",
+      "position": 6,
+      "topic": null
+    },
+    {
+      "id": "1414027188952633444",
+      "name": "🤝│partnerek",
+      "type": 0,
+      "parentId": "1414027083235201035",
+      "position": 1,
+      "topic": null
+    },
+    {
+      "id": "1414020019121029191",
+      "name": "STAFF RÉSZLEG",
+      "type": 4,
+      "parentId": null,
+      "position": 0,
+      "topic": null
+    },
+    {
+      "id": "1414022853149458532",
+      "name": "🗣️│megbeszélő",
+      "type": 2,
+      "parentId": "1414020019121029191",
+      "position": 0,
+      "topic": null
+    },
+    {
+      "id": "1414223363492020274",
+      "name": "TICKET",
+      "type": 4,
+      "parentId": null,
+      "position": 2,
+      "topic": null
+    },
+    {
+      "id": "1414180288535330977",
+      "name": "📰│hírek",
+      "type": 5,
+      "parentId": "1414014785887932468",
+      "position": 4,
+      "topic": null
+    },
+    {
+      "id": "1414321291204366407",
+      "name": "📜│rules",
+      "type": 0,
+      "parentId": "1414014785887932468",
+      "position": 1,
+      "topic": null
+    },
+    {
+      "id": "1416702635104538674",
+      "name": "JELENTKEZÉS",
+      "type": 4,
+      "parentId": null,
+      "position": 4,
+      "topic": null
+    },
+    {
+      "id": "1416728198745690245",
+      "name": "📢 | Meghallgatás",
+      "type": 2,
+      "parentId": "1416702635104538674",
+      "position": 0,
+      "topic": null
+    },
+    {
+      "id": "1414026828657725625",
+      "name": "🎊│nyereményjátékok",
+      "type": 0,
+      "parentId": "1414014785887932468",
+      "position": 7,
+      "topic": null
+    },
+    {
+      "id": "1414022127366963341",
+      "name": "🔨│szankciók",
+      "type": 0,
+      "parentId": "1414020019121029191",
+      "position": 3,
+      "topic": null
+    },
+    {
+      "id": "1415034117027922042",
+      "name": "🛠️│frissítések",
+      "type": 5,
+      "parentId": "1414014785887932468",
+      "position": 5,
+      "topic": null
+    },
+    {
+      "id": "1414029238666919966",
+      "name": "📍│tgf",
+      "type": 0,
+      "parentId": "1416702635104538674",
+      "position": 0,
+      "topic": null
+    },
+    {
+      "id": "1414174453729857536",
+      "name": "😈│owner-chat",
+      "type": 0,
+      "parentId": "1414020019121029191",
+      "position": 1,
+      "topic": null
+    },
+    {
+      "id": "1414024157133406400",
+      "name": "🤖│bot-parancsok",
+      "type": 0,
+      "parentId": "1414014785887932467",
+      "position": 4,
+      "topic": null
+    },
+    {
+      "id": "1414014785887932467",
+      "name": "KÖZÖSSÉGI SZOBÁK",
+      "type": 4,
+      "parentId": null,
+      "position": 3,
+      "topic": null
+    },
+    {
+      "id": "1414498372227694593",
+      "name": "dcwithally",
+      "type": 0,
+      "parentId": "1414337015574564954",
+      "position": 0,
+      "topic": null
+    },
+    {
+      "id": "1415693715464257606",
+      "name": "🔨tester",
+      "type": 0,
+      "parentId": "1414020019121029191",
+      "position": 8,
+      "topic": null
+    },
+    {
+      "id": "1414021859028238368",
+      "name": "📝│staff-chat",
+      "type": 0,
+      "parentId": "1414020019121029191",
+      "position": 2,
+      "topic": null
+    },
+    {
+      "id": "1414025619024515082",
+      "name": "📜│szabályzat",
+      "type": 0,
+      "parentId": "1414014785887932468",
+      "position": 0,
+      "topic": null
+    },
+    {
+      "id": "1414014785887932468",
+      "name": "FONTOS SZOBÁK",
+      "type": 4,
+      "parentId": null,
+      "position": 1,
+      "topic": null
+    },
+    {
+      "id": "1414325225503461548",
+      "name": "📢│szerver-infó",
+      "type": 0,
+      "parentId": "1414014785887932468",
+      "position": 3,
+      "topic": null
+    },
+    {
+      "id": "1416702446629294190",
+      "name": "📍│tgf-eredmények",
+      "type": 0,
+      "parentId": "1416702635104538674",
+      "position": 1,
+      "topic": null
+    },
+    {
+      "id": "1414027735948595230",
+      "name": "📑│partner-szöveg",
+      "type": 0,
+      "parentId": "1414027083235201035",
+      "position": 0,
+      "topic": null
+    },
+    {
+      "id": "1416346277410635897",
+      "name": "📇│log",
+      "type": 0,
+      "parentId": "1414020019121029191",
+      "position": 7,
+      "topic": null
+    },
+    {
+      "id": "1414223550805708964",
+      "name": "🎫│hibajegy",
+      "type": 0,
+      "parentId": "1414223363492020274",
+      "position": 0,
+      "topic": null
+    },
+    {
+      "id": "1414014785887932469",
+      "name": "💬│csevegő",
+      "type": 0,
+      "parentId": "1414014785887932467",
+      "position": 0,
+      "topic": null
+    },
+    {
+      "id": "1414496313407701033",
+      "name": "💎│dcwith-ally",
+      "type": 0,
+      "parentId": "1414014785887932468",
+      "position": 6,
+      "topic": null
+    },
+    {
+      "id": "1414026321864032286",
+      "name": "📰│staff-hírek",
+      "type": 5,
+      "parentId": "1414020019121029191",
+      "position": 0,
+      "topic": null
+    },
+    {
+      "id": "1414027083235201035",
+      "name": "PARTNERSÉG",
+      "type": 4,
+      "parentId": null,
+      "position": 5,
+      "topic": null
+    },
+    {
+      "id": "1414497845012205628",
+      "name": "💎│dcwith-chat",
+      "type": 0,
+      "parentId": "1414020019121029191",
+      "position": 5,
+      "topic": null
+    },
+    {
+      "id": "1414020188650868839",
+      "name": "👋│csatlakozások",
+      "type": 0,
+      "parentId": "1414014785887932468",
+      "position": 2,
+      "topic": null
+    },
+    {
+      "id": "1414337015574564954",
+      "name": "FŐ PARTNERSÉG",
+      "type": 4,
+      "parentId": null,
+      "position": 6,
+      "topic": null
+    },
+    {
+      "id": "1414684932424335361",
+      "name": "🌐│global-csevegő",
+      "type": 0,
+      "parentId": "1414014785887932467",
+      "position": 1,
+      "topic": null
+    },
+    {
+      "id": "1414243394426900580",
+      "name": "Jh",
+      "type": 12,
+      "parentId": "1414223550805708964",
+      "topic": null
+    }
+  ]
+}
