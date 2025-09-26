@@ -2,7 +2,7 @@ const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "clear",
-    description: "Törli a megadott számú üzenetet a csatornából (max 10 000).",
+    description: "Törli a megadott számú üzenetet a csatornából (Max 100).",
     async execute(message, args) {
         if (!message.guild) return;
 
@@ -18,8 +18,8 @@ module.exports = {
             return message.reply("Adj meg egy érvényes számot! Példa: `.clear 10`");
         }
 
-        if (amount > 10000) {
-            return message.reply("Egyszerre maximum **10 000** üzenetet törölhetsz!");
+        if (amount > 100) {
+            return message.reply("Egyszerre maximum **100** üzenetet törölhetsz!");
         }
 
         try {
