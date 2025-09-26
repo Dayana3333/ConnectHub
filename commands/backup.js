@@ -1,4 +1,4 @@
-// commands/backup.js
+// commands/backup.js - server connected
 const fs = require('fs');
 
 module.exports = {

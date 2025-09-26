@@ -22,7 +22,7 @@ module.exports = {
     if (!mutedRole) return message.reply('❌ Nincs "Muted" rang a szerveren!');
 
     const duration = args[1];
-    if (!duration) return message.reply('❌ Add meg az időtartamot! pl.: 5m, 1h');
+    if (!duration) return message.reply('❌ Add meg az időtartamot! pl.: 300s');
 
     const time = ms(duration);
     if (!time) return message.reply('❌ Érvénytelen időformátum! pl.: 5m, 1h');
