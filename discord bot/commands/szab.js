@@ -26,7 +26,7 @@ module.exports = {
 > 4.3 Személyes vagy bizalmas információ megosztása hibajegyben még staff taggal is tilos!  
 
 > 5. Szabálysértések jelentése:  
-> 5.2 Discordon hibajegyet nyithatsz a #hibajegy csatornában, ha segítségre van szükséged vagy bejelentenél valamit.  
+> 5.2 Discordon hibajegyet nyithatsz a <#1421149595748139068> csatornában, ha segítségre van szükséged vagy bejelentenél valamit.
 
 > *(A szabályzat változtatásának jogát fenntartjuk!)*  
 > *A szabályok nem ismerete nem mentesít a következmények alól.*
