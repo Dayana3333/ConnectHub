@@ -14,7 +14,7 @@ module.exports = {
             return message.reply("Adj meg egy felhasználó ID-t vagy említést!");
         }
 
-        // Ha mentiont írtak, kiszedjük belőle a számot
+        // Ha mentiont írtak, kiszedjük belőle a számot/ID-t
         const userId = rawId.replace(/[<@!>]/g, '');
 
         try {

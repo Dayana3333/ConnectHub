@@ -7,11 +7,8 @@ module.exports = {
         if (!message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
       return message.reply("❌ Ehhez a parancshoz admin jogosultság kell!");
     }
-    if (!message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-      return message.reply("❌ Ehhez a parancshoz admin jogosultság kell!");
-    }
-
-    const embed = new EmbedBuilder()
+ 
+  const embed = new EmbedBuilder()
       .setColor('#ff0000')
       .setTitle('🛑 Bot Leállítás')
       .setDescription('A bot leállításra kerül...')

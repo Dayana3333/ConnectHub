@@ -8,13 +8,17 @@ module.exports = {
         if (!message.member.permissions.has(PermissionsBitField.Flags.ModerateMembers))
             return message.reply('❌ Nincs jogosultságod!');
 
+        // Muted szerep
+        const mutedRole = message.guild.roles.cache.find(r => r.name === 'Muted');
+        if (!mutedRole) return message.reply('❌ Nincs "Muted" rang a szerveren!');
+
         // Felhasználó kiválasztása
         const member = message.mentions.members.first();
         if (!member) return message.reply('❌ Jelölj ki egy felhasználót!');
 
         // Muted szerep
-        const mutedRole = message.guild.roles.cache.find(r => r.name === 'Muted');
-        if (!mutedRole) return message.reply('❌ Nincs "Muted" rang a szerveren!');
+        // const mutedRole = message.guild.roles.cache.find(r => r.name === 'Muted');
+        // if (!mutedRole) return message.reply('❌ Nincs "Muted" rang a szerveren!'); 
 
         // Ellenőrzés, hogy a felhasználó tényleg némítva van-e
         if (!member.roles.cache.has(mutedRole.id)) 
