@@ -21,7 +21,7 @@ module.exports = {
     `ℹ️ **.help**\n– Kiírja az elérhető parancsokat.\n` +
     `🤝 **.partner lista**\n– Kiírja a jelenlegi partnereinket.\n` +
     `🔇 **.mute <felhasználó> <idő> <indok>(opcionális)**\n– Némítja a felhasználót a megadott időtartamra.\n` +
-    `📖 **.szab**\n– Szerver szabályzat kíirása. / .rules – Displays the server rules.\n` +
+    `📖 **.szab**\n– Szerver szabályzat kíirása. \n` +
     `📨 **.dm <felhasználó> <üzenet>**\n– A bottal küldhetsz üzenetet privátba a megemlített felhasználónak.\n` +
     `🤖 **.join log <#csatorna>**\n– Beállíthatod, hogy melyik csatornába logoljon ha valaki belép a szerverre.\n` +
     `📥 **.log set (normal)/(mute) #csatorna**\n– Beállíthatod, hogy melyik csatornába logoljon normálon és külön ha valaki némítást kap.\n` +
