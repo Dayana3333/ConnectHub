@@ -3,7 +3,7 @@ const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
   name: 'szab',
-  description: 'Kijelzi a szerver szabályzatát magyarul',
+  description: 'Kijelzi a szerver szabályzatát',
   async execute(message) {
     if (message.author.bot) return;
 
@@ -16,18 +16,18 @@ module.exports = {
 > 2. Mások diszkriminálása tilos.  
 > 3. Trágár kifejezések használata tilos.  
 > 4. Mások személyes adatainak megosztása engedély nélkül tilos.  
-> 5. Más Discord szerverek reklámozása tilos.  
-> 6. Felnőtt (18+) tartalmak megosztása tilos.  
+> 5. Más Discord szerverek reklámozása tilos.
+> 6. Felnőtt (18+) tartalmak megosztása tilos. 
 > 7. Spamelés tilos.  
-
+           
 > **Hibajegy (ticket) szabályzat:**  
 > 4.1 Csak akkor nyiss hibajegyet, ha valódi problémád vagy kérdésed van, amit nem tudsz pár perc alatt megoldani, vagy máshol választ találni rá.  
 > 4.2 Nem kérhetsz segítséget a ConnectHub csapattagjaitól olyan problémákra, amik nem tartoznak a szerverhez vagy az ő felelősségi körükbe.  
 > 4.3 Személyes vagy bizalmas információ megosztása hibajegyben még staff taggal is tilos!  
 
 > 5. Szabálysértések jelentése:  
-> 5.2 Discordon hibajegyet nyithatsz a <#1421149595748139068> csatornában, ha segítségre van szükséged vagy bejelentenél valamit.
-
+> 5.2 Discordon hibajegyet nyithatsz a <#1421151189818540163> csatornában, ha segítségre van szükséged vagy bejelentenél valamit. 
+       
 > *(A szabályzat változtatásának jogát fenntartjuk!)*  
 > *A szabályok nem ismerete nem mentesít a következmények alól.*
       `)
@@ -37,3 +37,5 @@ module.exports = {
     await message.channel.send({ embeds: [embed] });
   },
 };
+
+// <#1414223550805708964> 29. sor csere erre ConnectHub hibajegy
