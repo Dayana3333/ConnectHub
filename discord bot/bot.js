@@ -48,7 +48,7 @@ if (fs.existsSync(commandsPath)) {
 }
 
 // Attach watch.js for bad word filtering
-const watch = require("./discord bot/events/watch.js");
+const watch = require("./events/watch.js");
 watch.execute(client);
 
 // ---------------------- ADATOK MENTÉSE ----------------------

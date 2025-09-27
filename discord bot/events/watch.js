@@ -1,7 +1,6 @@
-const { Client, GatewayIntentBits } = require('discord.js');
+// watch.js
 const { words: badWords } = require('../badwords.json');
 
-// Normalizálás funkció – számok, szimbólumok helyettesítése
 function normalize(text) {
   return text
     .toLowerCase()
@@ -17,10 +16,9 @@ function normalize(text) {
     .replace(/\$/g, "s")
     .replace(/vv/g, "w")
     .replace(/v/g, "u")
-    .replace(/[^a-z0-9]/g, ""); // minden nem betű/szám törlése
+    .replace(/[^a-z0-9]/g, "");
 }
 
-// Regex-ek létrehozása minden tiltott szóból
 const badRegexes = badWords.map(word => {
   const pattern = normalize(word)
     .split("")
@@ -29,26 +27,22 @@ const badRegexes = badWords.map(word => {
   return new RegExp(pattern, "i");
 });
 
-// --- Initialize client ---
-const client = new Client({
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
-});
+// Export a function that takes the client and attaches the listener
+module.exports.execute = (client) => {
+  client.on('messageCreate', async (message) => {
+    if (message.author.bot) return;
 
-// --- Message listener ---
-client.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
+    const normalizedMsg = normalize(message.content);
 
-  const normalizedMsg = normalize(message.content);
-
-  if (badRegexes.some(regex => regex.test(normalizedMsg))) {
-    try {
-      await message.delete();
-      await message.channel.send(
-        `${message.author}, kérlek ne használj csúnya szavakat! 🚫`
-      );
-    } catch (err) {
-      console.error("Nem tudtam törölni az üzenetet:", err);
+    if (badRegexes.some(regex => regex.test(normalizedMsg))) {
+      try {
+        await message.delete();
+        await message.channel.send(
+          `${message.author}, kérlek ne használj csúnya szavakat! 🚫`
+        );
+      } catch (err) {
+        console.error("Nem tudtam törölni az üzenetet:", err);
+      }
     }
-  }
-});
-
+  });
+};
