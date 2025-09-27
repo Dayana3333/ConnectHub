@@ -84,7 +84,17 @@ module.exports = {
 };
 
 
-/* try {
+/* 
+const embed = new EmbedBuilder()
+        .setTitle('❌ Szankcionálva') 
+        .setColor('Red')
+        .addFields(
+          { name: 'Felhasználó', value: `${member}`, inline: true },
+          {name: 'Felfüggesztés', value: `🔇 30 perces felfüggesztést kaptál a(z) ${message.guild.name} szerveren (3 figyelmeztetés).`}
+          { name: 'Warnok száma', value: `${warns}`, inline: true }
+        )
+        .setTimestamp();
+try {
       if (warns === 3) {
         await member.timeout(30 * 60 * 1000, '3 warn – 30 perc felfüggesztés');
         await message.channel.send({ embeds: [embed] });(`🔇 30 perces felfüggesztést kaptál a(z) ${message.guild.name} szerveren (3 figyelmeztetés).`);
