@@ -5,7 +5,7 @@ const { punishments } = require('../mybot_project/utils/spamData.js');
 // Reset counter map
 const resets = new Map();
 
-const LOG_CHANNEL_ID = '1421156985230856374';
+const LOG_CHANNEL_ID = '1421151297284997210';
 
 module.exports = {
   name: 'warn',
