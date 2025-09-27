@@ -2,8 +2,10 @@
 const { PermissionsBitField, EmbedBuilder } = require('discord.js');
 const { punishments } = require('../mybot_project/utils/spamData.js');
 
-// We'll create a reset counter Map
+// Reset counter map
 const resets = new Map();
+
+const LOG_CHANNEL_ID = '1421156985230856374';
 
 module.exports = {
   name: 'warn',
@@ -48,7 +50,15 @@ module.exports = {
         )
         .setTimestamp();
 
-      return message.channel.send({ embeds: [embed] });
+      await message.channel.send({ embeds: [embed] });
+
+      // ==== CSATORNÁBA LOGOLÁS ====
+      const logChannel = message.guild.channels.cache.get(LOG_CHANNEL_ID);
+      if (logChannel) {
+        logChannel.send({ embeds: [embed] });
+      }
+
+      return;
     }
 
     // ======= WARN =======
@@ -71,15 +81,10 @@ module.exports = {
 
     await message.channel.send({ embeds: [embed] });
 
-    // Logolás log csatornába
-    const guildLogs = logSettings[message.guild.id];
-    if (guildLogs && guildLogs.muteLog) {
-      const logChannel = message.guild.channels.cache.get(guildLogs.muteLog);
-      if (logChannel) {
-        logChannel.send({
-          embeds: [muteEmbed.setFooter({ text: 'Warn log' })]
-        }).catch(console.error);
-      }
+    // ==== CSATORNÁBA LOGOLÁS ====
+    const logChannel = message.guild.channels.cache.get(LOG_CHANNEL_ID);
+    if (logChannel) {
+      logChannel.send({ embeds: [embed] });
     }
 
     // ======= SZANKCIÓK =======
