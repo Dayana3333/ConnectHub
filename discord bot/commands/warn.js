@@ -2,10 +2,10 @@
 const { PermissionsBitField, EmbedBuilder } = require('discord.js');
 const { punishments } = require('../mybot_project/utils/spamData.js');
 
-/*
+
 // Reset counter map
 const resets = new Map();
-*/
+
 
 const LOG_CHANNEL_ID = '1421151297284997210'; // 1416515207009927339 ConnectHub némítások channelID
 
