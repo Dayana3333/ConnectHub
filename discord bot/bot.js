@@ -48,6 +48,10 @@ if (fs.existsSync(commandsPath)) {
   }
 }
 
+// Attach watch.js for bad word filtering RICSI TETTE IDE
+const watch = require("./events/watch.js");
+watch.execute(client);
+
 // ---------------------- ADATOK MENTÉSE ----------------------
 const giveawayFile = path.join(__dirname, "giveawayChannels.json");
 let giveawayChannels = {};
