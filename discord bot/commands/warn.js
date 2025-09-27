@@ -2,6 +2,9 @@
 const { PermissionsBitField, EmbedBuilder } = require('discord.js');
 const { punishments } = require('../mybot_project/utils/spamData.js');
 
+// We'll create a reset counter Map
+const resets = new Map();
+
 module.exports = {
   name: 'warn',
   description: 'Warnol vagy nulláz warnokat (reset)',
@@ -19,10 +22,19 @@ module.exports = {
       const member = message.mentions.members.first();
       if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.reset @Felhasználó`');
 
+      // Delete warnings
       punishments.delete(member.id);
 
-      if (reset === 1){
-        await member.timeout(60 * 60 * 1000, '3 warn – 30 perc felfüggesztés');
+      // Increment reset counter
+      let resetCount = resets.get(member.id) || 0;
+      resetCount++;
+      resets.set(member.id, resetCount);
+
+      // Remove timeout completely
+      try {
+        await member.timeout(null);
+      } catch (err) {
+        console.log(`Nem sikerült timeoutot törölni: ${err.message}`);
       }
 
       const embed = new EmbedBuilder()
@@ -31,7 +43,7 @@ module.exports = {
         .addFields(
           { name: 'Felhasználó', value: `${member}`, inline: true },
           { name: 'Moderátor', value: `${message.author}`, inline: true },
-          { name: 'Státusz', value: 'Minden figyelmeztetés törölve ✅', inline: false }
+          { name: 'Státusz', value: `Minden figyelmeztetés törölve ✅\nReset száma: ${resetCount}`, inline: false }
         )
         .setTimestamp();
 
@@ -71,7 +83,7 @@ module.exports = {
       } else if (warns >= 6) {
         await member.timeout(7 * 24 * 60 * 60 * 1000, '6+ warn – hosszú felfüggesztés');
         await member.send(`🚫 Hosszú felfüggesztést kaptál a(z) ${message.guild.name} szerveren spamelés miatt.`);
-        await message.channel.send(`${member} egy napra felfüggesztve felfüggesztve (timeout) 6+ figyelmeztetés miatt.`);
+        await message.channel.send(`${member} hosszú időre felfüggesztve (timeout) 6+ figyelmeztetés miatt.`);
       }
     } catch (err) {
       await message.reply(`❌ Nem sikerült timeoutolni a tagot: ${err.message}`);
