@@ -21,7 +21,7 @@ module.exports = {
 
       punishments.delete(member.id);
 
-      if (reset == 1){
+      if (reset === 1){
         await member.timeout(60 * 60 * 1000, '3 warn – 30 perc felfüggesztés');
       }
 
