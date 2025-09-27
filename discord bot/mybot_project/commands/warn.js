@@ -17,7 +17,7 @@ module.exports = {
     // ======= RESET =======
     if (args[0].toLowerCase() === 'reset') {
       const member = message.mentions.members.first();
-      if (!member) return messageCreate.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn reset @Felhasználó`');
+      if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn reset @Felhasználó`');
       punishments.delete(member.id);
       const embed = new EmbedBuilder()
         .setTitle('♻️ Figyelmeztetések nullázva')
@@ -32,25 +32,43 @@ module.exports = {
     }
 
     // ======= WARN =======
-    const member = messageCreate.mentions.members.first();
-    if (!member) return messageCreate.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn @Felhasználó`');
+    const { Client, GatewayIntentBits, Partials } = require('discord.js');
 
-    let warns = punishments.get(member.id) || 0;
-    warns++;
-    punishments.set(member.id, warns);
+  // Initialize the client
+  const client = new Client({
+      intents: [
+          GatewayIntentBits.Guilds,
+          GatewayIntentBits.GuildMessages,
+          GatewayIntentBits.MessageContent,
+          GatewayIntentBits.GuildMembers
+      ],
+      partials: [Partials.Channel]
+  });
 
-    // alap embed
-    const embed = new EmbedBuilder()
-      .setTitle('⚠️ Warn kiadva')
-      .setColor('Orange')
-      .addFields(
-        { name: 'Felhasználó', value: `${member}`, inline: true },
-        { name: 'Moderátor', value: `${message.author}`, inline: true },
-        { name: 'Warnok száma', value: `${warns}`, inline: true }
-      )
-      .setTimestamp();
+  // Map to store warnings
+  const punishments = new Map();
 
-    await message.channel.send({ embeds: [embed] });
+  client.on('messageCreate', async (message) => {
+      if (message.author.bot) return; // Ignore bot messages
+      if (!message.content.startsWith(prefix)) return;
+
+      const args = message.content.slice(prefix.length).trim().split(/ +/);
+      const command = args.shift().toLowerCase();
+
+      if (command === 'warn') {
+          // Felhasználó pingelése
+          const member = message.mentions.members.first();
+          if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn @Felhasználó`');
+
+          // Warn számoló
+          let warns = punishments.get(member.id) || 0;
+          warns++;
+          punishments.set(member.id, warns);
+
+          // Csatorna értsítő
+          message.channel.send(`${member.user.tag} figyelmeztetve lett. (${warns} figyelmeztetés összesen)`);
+        }
+  });
 
     // ======= SZANKCIÓK =======
     try {
