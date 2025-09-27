@@ -1,4 +1,4 @@
-const { words: badWords } = require('./badwords.json');
+const { words: badWords } = require('../badwords.json');
 
 function normalize(text) {
   return text
