@@ -32,7 +32,7 @@ module.exports = {
 
       // Remove timeout completely
       try {
-        await member.timeout(null);
+        await member.timeout(60 * 60 * 1000);
       } catch (err) {
         console.log(`Nem sikerült timeoutot törölni: ${err.message}`);
       }
