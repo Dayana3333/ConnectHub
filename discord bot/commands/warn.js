@@ -19,14 +19,7 @@ module.exports = {
       const member = message.mentions.members.first();
       if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn reset @Felhasználó`');
       punishments.delete(member.id);
-
-      if (member.isCommunicationDisabled()) {
-        try {
-          await member.timeout(null, 'Warn reset – timeout eltávolítva');
-        } catch (err) {
-          console.log(`Nem sikerült timeoutot törölni: ${err.message}`);
-        }
-      }
+      await member.timeout(null, 'Warn reset – timeout eltávolítva');
 
       const embed = new EmbedBuilder()
         .setTitle('♻️ Figyelmeztetések nullázva')
