@@ -23,7 +23,7 @@ module.exports = {
 
       punishments.delete(member.id);
 
-      await member.timeout(null);
+      await member.timeout(null, "reset");
 
       const embed = new EmbedBuilder()
         .setTitle('♻️ Figyelmeztetések nullázva')
