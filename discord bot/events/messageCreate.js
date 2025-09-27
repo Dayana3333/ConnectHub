@@ -2,7 +2,7 @@ const fs = require('fs');
 const { PermissionsBitField, EmbedBuilder } = require('discord.js');
 
 // csúnya szavak betöltése
-const badWords = JSON.parse(fs.readFileSync('./badwords.json')).words;
+const badWords = JSON.parse(fs.readFileSync('../badwords.json')).words;
 
 // logbeállítások betöltése
 let logSettings = {};
@@ -11,7 +11,7 @@ if (fs.existsSync('./logSettings.json')) {
 }
 
 // itt add meg a moderátor szerep ID-ját
-const MODERATOR_ROLE_ID = '1414177749429522524'; // <-- saját ID
+const MODERATOR_ROLE_ID = '1421156251294892072'; // <-- saját ID
 
 module.exports = (bot) => {
   bot.on('messageCreate', async (message) => {
