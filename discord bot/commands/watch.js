@@ -1,5 +1,6 @@
 const { words: badWords } = require('../badwords.json');
 
+// Normalizálás funkció – számok, szimbólumok helyettesítése
 function normalize(text) {
   return text
     .toLowerCase()
@@ -15,22 +16,22 @@ function normalize(text) {
     .replace(/\$/g, "s")
     .replace(/vv/g, "w")
     .replace(/v/g, "u")
-    .replace(/[^a-z0-9]/g, ""); // strip everything not alphanumeric
+    .replace(/[^a-z0-9]/g, ""); // minden nem betű/szám törlése
 }
 
-// minden rossz szóból regex (pl. f+ a+ s+ z+)
+// Regex-ek létrehozása minden tiltott szóból
 const badRegexes = badWords.map(word => {
   const pattern = normalize(word)
     .split("")
-    .map(ch => ch + "+")
+    .map(ch => ch + "+") // pl. f+ a+ s+ z+
     .join("");
-  return new RegExp(pattern, "i"); // i = case-insensitive
+  return new RegExp(pattern, "i");
 });
 
 module.exports = {
-  name: 'watch',
-  run(client) {
-    client.on('messageCreate', async (message) => {
+  name: "watch",
+  async execute(client) {
+    client.on("messageCreate", async (message) => {
       if (message.author.bot) return;
 
       const normalizedMsg = normalize(message.content);
@@ -42,9 +43,9 @@ module.exports = {
             `${message.author}, kérlek ne használj csúnya szavakat! 🚫`
           );
         } catch (err) {
-          console.error('Nem tudtam törölni az üzenetet:', err);
+          console.error("Nem tudtam törölni az üzenetet:", err);
         }
       }
     });
-  }
+  },
 };
