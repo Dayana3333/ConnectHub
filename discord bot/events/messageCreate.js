@@ -1,14 +1,19 @@
 const fs = require('fs');
+const path = require('path');
 const { PermissionsBitField, EmbedBuilder } = require('discord.js');
 
 // csúnya szavak betöltése
-const badWords = JSON.parse(fs.readFileSync('../badwords.json')).words;
-
-// logbeállítások betöltése
-let logSettings = {};
-if (fs.existsSync('./logSettings.json')) {
-  logSettings = JSON.parse(fs.readFileSync('./logSettings.json', 'utf8'));
+const badWordsPath = path.join(__dirname, '..', 'badwords.json');
+let badWords = [];
+try {
+  const bwRaw = fs.readFileSync(badWordsPath, 'utf8');
+  badWords = JSON.parse(bwRaw).words || [];
+} catch (err) {
+  console.error('Hiba a badwords.json betöltésekor:', err);
 }
+
+// paths
+const logSettingsPath = path.join(__dirname, '..', 'logSettings.json');
 
 // itt add meg a moderátor szerep ID-ját
 const MODERATOR_ROLE_ID = '1421156251294892072'; // <-- saját ID
@@ -16,6 +21,18 @@ const MODERATOR_ROLE_ID = '1421156251294892072'; // <-- saját ID
 module.exports = (bot) => {
   bot.on('messageCreate', async (message) => {
     if (!message.guild || message.author.bot) return;
+
+    // --- Load log settings FRESH for every event (ensures live updates) ---
+    let logSettings = {};
+    try {
+      if (fs.existsSync(logSettingsPath)) {
+        const raw = fs.readFileSync(logSettingsPath, 'utf8');
+        logSettings = JSON.parse(raw);
+      }
+    } catch (err) {
+      console.error('Hiba a logSettings.json olvasásakor:', err);
+      logSettings = {};
+    }
 
     // mindenki akinek admin/managemessages/moderatemembers van
     // vagy rendelkezik a moderátor szereppel, mentesül
@@ -31,8 +48,8 @@ module.exports = (bot) => {
 
     // --- KÁROMKODÁS SZŰRÉS ---
     if (!isExempt && badWords.some(word => content.includes(word))) {
-      await message.delete().catch(() => {});
-      await message.channel.send(`${message.author}, ne használj tiltott szavakat! ⛔`).catch(() => {});
+      await message.delete().catch(() => { });
+      await message.channel.send(`${message.author}, ne használj tiltott szavakat! ⛔`).catch(() => { });
       return;
     }
 
@@ -43,8 +60,8 @@ module.exports = (bot) => {
         const caps = letters.replace(/[^A-ZÁÉÍÓÖŐÚÜŰ]/g, '');
         const ratio = caps.length / letters.length;
         if (ratio > 0.7) {
-          await message.delete().catch(() => {});
-          await message.channel.send(`${message.author}, ne írj végig nagybetűkkel! 🔇`).catch(() => {});
+          await message.delete().catch(() => { });
+          await message.channel.send(`${message.author}, ne írj végig nagybetűkkel! 🔇`).catch(() => { });
           return;
         }
       }
@@ -54,8 +71,8 @@ module.exports = (bot) => {
     if (!isExempt) {
       const nsfwRegex = /(porn|xvideos|xnxx|sex|xxx)/i;
       if (nsfwRegex.test(content)) {
-        await message.delete().catch(() => {});
-        await message.channel.send(`${message.author}, ne ossz meg pornográf tartalmat! 🚫`).catch(() => {});
+        await message.delete().catch(() => { });
+        await message.channel.send(`${message.author}, ne ossz meg pornográf tartalmat! 🚫`).catch(() => { });
         return;
       }
     }
@@ -64,8 +81,8 @@ module.exports = (bot) => {
     if (!isExempt) {
       const linkRegex = /(https?:\/\/[^\s]+)/gi;
       if (linkRegex.test(message.content)) {
-        await message.delete().catch(() => {});
-        await message.channel.send(`${message.author}, linkek küldése nem engedélyezett számodra.! 🔗🚫`).catch(() => {});
+        await message.delete().catch(() => { });
+        await message.channel.send(`${message.author}, linkek küldése nem engedélyezett számodra.! 🔗🚫`).catch(() => { });
         return;
       }
     }
@@ -77,18 +94,18 @@ module.exports = (bot) => {
     if (logChannelId) {
       const logChannel = message.guild.channels.cache.get(logChannelId);
       if (logChannel) {
-const embed = new EmbedBuilder()
-  .setColor('Blue')
-  .setTitle('📩 Új üzenet')
-  .addFields(
-    { name: 'Felhasználó', value: message.author.tag, inline: true },
-    { name: 'Csatorna', value: `${message.channel}`, inline: true },
-    { name: 'Üzenet', value: message.content && message.content.length ? message.content : '*nincs szöveg*' }
-  )
-  .setTimestamp();
+        const embed = new EmbedBuilder()
+          .setColor('Blue')
+          .setTitle('📩 Új üzenet')
+          .addFields(
+            { name: 'Felhasználó', value: message.author.tag, inline: true },
+            { name: 'Csatorna', value: `${message.channel}`, inline: true },
+            { name: 'Üzenet', value: message.content && message.content.length ? message.content : '*nincs szöveg*' }
+          )
+          .setTimestamp();
 
 
-        logChannel.send({ embeds: [embed] }).catch(() => {});
+        logChannel.send({ embeds: [embed] }).catch(() => { });
       }
     }
   });
