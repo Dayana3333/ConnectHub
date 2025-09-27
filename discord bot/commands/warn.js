@@ -16,10 +16,19 @@ module.exports = {
 
     // ======= RESET =======
     if (args[0].toLowerCase() === 'reset') {
-      const member = message.mentions.members.first();
-      if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn reset @Felhasználó`');
+      const memberMention = message.mentions.members.first();
+      if (!memberMention) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.reset @Felhasználó`');
+
+      const member = await message.guild.members.fetch(memberMention.id);
+
       punishments.delete(member.id);
-      await member.timeout(null, 'Warn reset – timeout eltávolítva');
+      if (member.isCommunicationDisabled()) {
+        try {
+          await member.timeout(null, 'Warn reset | timeout eltávolítva');
+        } catch (err) {
+          await message.reply(`Nem sikerült: ${err.message}`)
+        }
+      }
 
       const embed = new EmbedBuilder()
         .setTitle('♻️ Figyelmeztetések nullázva')
