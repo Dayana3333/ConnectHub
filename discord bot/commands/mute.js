@@ -1,12 +1,9 @@
 const ms = require('ms'); // npm install ms
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const fs = require('fs');
+const path = require('path');
 
-// betöltjük a logSettings-et (azért kívülre tesszük, hogy minden futásnál legyen friss)
-let logSettings = {};
-if (fs.existsSync('./logSettings.json')) {
-  logSettings = JSON.parse(fs.readFileSync('./logSettings.json', 'utf8'));
-}
+const logSettingsPath = path.join(__dirname, '..', 'logSettings.json');
 
 module.exports = {
   name: 'mute',
@@ -44,14 +41,24 @@ module.exports = {
       )
       .setTimestamp();
 
-    // === LOGOLÁS a muteLog csatornába ===
-    const guildLogs = logSettings[message.guild.id];
-    if (guildLogs && guildLogs.muteLog) {
+    // === LIVE LOGOLÁS a muteLog csatornába ===
+    let guildLogs = {};
+    try {
+      if (fs.existsSync(logSettingsPath)) {
+        const raw = fs.readFileSync(logSettingsPath, 'utf8');
+        const settings = JSON.parse(raw);
+        guildLogs = settings[message.guild.id] || {};
+      }
+    } catch (err) {
+      console.error('Hiba a logSettings.json olvasásakor (mute):', err);
+      guildLogs = {};
+    }
+
+    if (guildLogs.muteLog) {
       const logChannel = message.guild.channels.cache.get(guildLogs.muteLog);
       if (logChannel) {
-        logChannel.send({
-          embeds: [muteEmbed.setFooter({ text: 'Mute log' })]
-        }).catch(console.error);
+        logChannel.send({ embeds: [muteEmbed.setFooter({ text: 'Mute log' })] })
+          .catch(console.error);
       }
     }
 
