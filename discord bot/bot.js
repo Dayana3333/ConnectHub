@@ -358,7 +358,7 @@ client.on("messageCreate", async (message) => {
     }
   }
 });
-
+/*
 // ---------------------- LOG KEZELÉS ----------------------
 client.on("messageCreate", async (message) => {
   if (message.author.bot || !message.guild) return; // bot üzeneteket kihagyjuk
@@ -471,7 +471,7 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
     console.error("❌ Rangváltozás logolási hiba:", error);
   }
 });
-
+*/
 // ---------------------- AKTIVITÁSOK ----------------------
 const activities = [
   { name: ".help | Bot parancsok megtekintése.", type: ActivityType.Playing },
