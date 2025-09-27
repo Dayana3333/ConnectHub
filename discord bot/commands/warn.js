@@ -47,7 +47,7 @@ module.exports = {
         .addFields(
           { name: 'Felhasználó', value: `${member}`, inline: true },
           { name: 'Moderátor', value: `${message.author}`, inline: true },
-          { name: 'Warnok száma', value: `${warns}`, inline: false }
+          { name: 'Warnok száma', value: `${warns}`, inline: true }
         )
         .setTimestamp();
 
