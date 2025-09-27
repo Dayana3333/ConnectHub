@@ -1,3 +1,4 @@
+const { Client, GatewayIntentBits } = require('discord.js');
 const { words: badWords } = require('../badwords.json');
 
 // Normalizálás funkció – számok, szimbólumok helyettesítése
@@ -23,29 +24,31 @@ function normalize(text) {
 const badRegexes = badWords.map(word => {
   const pattern = normalize(word)
     .split("")
-    .map(ch => ch + "+") // pl. f+ a+ s+ z+
+    .map(ch => ch + "+")
     .join("");
   return new RegExp(pattern, "i");
 });
 
-module.exports = {
-  name: "watch",
-  async execute(client) {
-    client.on("messageCreate", async (message) => {
-      if (message.author.bot) return;
+// --- Initialize client ---
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
+});
 
-      const normalizedMsg = normalize(message.content);
+// --- Message listener ---
+client.on('messageCreate', async (message) => {
+  if (message.author.bot) return;
 
-      if (badRegexes.some(regex => regex.test(normalizedMsg))) {
-        try {
-          await message.delete();
-          await message.channel.send(
-            `${message.author}, kérlek ne használj csúnya szavakat! 🚫`
-          );
-        } catch (err) {
-          console.error("Nem tudtam törölni az üzenetet:", err);
-        }
-      }
-    });
-  },
-};
+  const normalizedMsg = normalize(message.content);
+
+  if (badRegexes.some(regex => regex.test(normalizedMsg))) {
+    try {
+      await message.delete();
+      await message.channel.send(
+        `${message.author}, kérlek ne használj csúnya szavakat! 🚫`
+      );
+    } catch (err) {
+      console.error("Nem tudtam törölni az üzenetet:", err);
+    }
+  }
+});
+
