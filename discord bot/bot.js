@@ -14,6 +14,7 @@ const {
 const fs = require("fs");
 const path = require("path");
 const config = require("./config.json");
+const messageDelete = require("./events/messageDelete");
 
 // ---------------------- BOT LÉTREHOZÁSA ----------------------
 const client = new Client({
@@ -46,10 +47,6 @@ if (fs.existsSync(commandsPath)) {
     }
   }
 }
-
-// Attach watch.js for bad word filtering RICSI TETTE IDE
-const watch = require("./events/watch.js");
-watch.execute(client);
 
 // ---------------------- ADATOK MENTÉSE ----------------------
 const giveawayFile = path.join(__dirname, "giveawayChannels.json");
@@ -125,6 +122,7 @@ client.on("messageCreate", async (message) => {
   // 🔒 ANTI-LINK
   const linkPattern =
     /(https?:\/\/)?(www\.)?(discord\.gg|discord\.com\/invite)\/[a-zA-Z0-9]+/i;
+    /(https?:\/\/)?(www\.)?(tenor\.gg|tenor\.com\/gif)\/[a-zA-Z0-9]+/i;
   if (linkPattern.test(message.content)) {
     try {
       await message.delete();
@@ -138,6 +136,10 @@ client.on("messageCreate", async (message) => {
   }
 
   if (!message.content.startsWith(prefix)) return;
+
+  // ha csak a prefixet írja be valaki, ne válaszoljon
+  if (message.content.trim() === prefix) return;
+
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const commandName = args.shift()?.toLowerCase();
   if (!commandName) return;
@@ -354,8 +356,29 @@ client.on("messageCreate", async (message) => {
 });
 
 // ---------------------- LOG KEZELÉS ----------------------
+client.on("messageCreate", async (message) => {
+  if (message.author.bot || !message.guild) return; // bot üzeneteket kihagyjuk
+
+  const logSettings = getLogSettings(message.guild.id);
+  const logChannel = message.guild.channels.cache.get(logSettings?.normalLog);
+  if (!logChannel) return;
+
+  const embed = new EmbedBuilder()
+    .setTitle("📨 Új üzenet")
+    .addFields(
+      { name: "Felhasználó", value: message.author.tag, inline: true },
+      { name: "Csatorna", value: `${message.channel}`, inline: true },
+      { name: "Üzenet", value: message.content || "[Üres üzenet]", inline: false }
+    )
+    .setColor("#00bfff")
+    .setTimestamp();
+
+  logChannel.send({ embeds: [embed] });
+});
+// Üzenet törlés logolása
 client.on("messageDelete", async (message) => {
   if (message.partial || !message.guild) return;
+
   const logSettings = getLogSettings(message.guild.id);
   const logChannel = message.guild.channels.cache.get(logSettings?.normalLog);
   if (!logChannel) return;
@@ -372,6 +395,7 @@ client.on("messageDelete", async (message) => {
 
   logChannel.send({ embeds: [embed] });
 });
+
 
 client.on("messageUpdate", async (oldMsg, newMsg) => {
   if (oldMsg.partial || newMsg.partial || !oldMsg.guild) return;
