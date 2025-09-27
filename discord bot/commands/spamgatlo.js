@@ -1,5 +1,5 @@
 const { PermissionsBitField, EmbedBuilder } = require("discord.js");
-const { punishments } = require('./mybot_project/utils/spamData.js');
+const { punishments } = require('../mybot_project/utils/spamData.js');
 
 module.exports = (bot) => {
     bot.on("messageCreate", async (message) => {
