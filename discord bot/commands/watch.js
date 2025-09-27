@@ -1,4 +1,8 @@
-const badWords = require('./badwords.js');
+const badWords = require('./badwords.json'); 
+
+import data from './badwords,json' assert { type: 'json' };
+
+console.log(data.name);
 
 function normalize(text) {
   return text
