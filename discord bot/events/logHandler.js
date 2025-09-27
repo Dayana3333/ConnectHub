@@ -1,7 +1,9 @@
 client.on("messageCreate", async (message) => {
   if (message.author.bot || !message.guild) return; // bot üzeneteket kihagyjuk
 
-
+  const logSettings = getLogSettings(message.guild.id);
+  const logChannel = message.guild.channels.cache.get(logSettings?.normalLog);
+  if (!logChannel) return;
 
   const embed = new EmbedBuilder()
     .setTitle("📨 Új üzenet")
