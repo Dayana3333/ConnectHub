@@ -1,14 +1,5 @@
-const badWords = require('./badwords.json'); 
+const { words: badWords } = require('./badwords.json');
 
-
-
-function normalize(text) {
-  return text
-    .toLowerCase()
-    .normalize("NFD")                // ékezetek eltávolítása
-    .replace(/[\u0300-\u036f]/g, "") // ékezetek törlése
-    .replace(/[^a-z0-9]/g, "");      // minden nem betű/szám törlése
-}
 function normalize(text) {
   return text
     .toLowerCase()
@@ -24,19 +15,17 @@ function normalize(text) {
     .replace(/\$/g, "s")
     .replace(/vv/g, "w")
     .replace(/v/g, "u")
-    .replace(/[^a-z0-9]/g, ""); // minden speciális karaktert kidob
+    .replace(/[^a-z0-9]/g, ""); // strip everything not alphanumeric
 }
 
-// minden rossz szóból regex
+// minden rossz szóból regex (pl. f+ a+ s+ z+)
 const badRegexes = badWords.map(word => {
-  const pattern = word
-    .toLowerCase()
+  const pattern = normalize(word)
     .split("")
-    .map(ch => ch + "+") // minden betűből: pl. f+ a+ s+ z+
+    .map(ch => ch + "+")
     .join("");
-  return new RegExp(pattern, "i"); // kis/nagybetű mindegy
+  return new RegExp(pattern, "i"); // i = case-insensitive
 });
-
 
 module.exports = {
   name: 'watch',
@@ -44,12 +33,14 @@ module.exports = {
     client.on('messageCreate', async (message) => {
       if (message.author.bot) return;
 
-      const lowerMsg = message.content.toLowerCase();
+      const normalizedMsg = normalize(message.content);
 
-      if (badWords.some(word => lowerMsg.includes(word))) {
+      if (badRegexes.some(regex => regex.test(normalizedMsg))) {
         try {
           await message.delete();
-          await message.channel.send(`${message.author}, kérlek ne használj csúnya szavakat! 🚫`);
+          await message.channel.send(
+            `${message.author}, kérlek ne használj csúnya szavakat! 🚫`
+          );
         } catch (err) {
           console.error('Nem tudtam törölni az üzenetet:', err);
         }
