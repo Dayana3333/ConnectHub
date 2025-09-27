@@ -47,7 +47,7 @@ if (fs.existsSync(commandsPath)) {
   }
 }
 
-// Attach watch.js for bad word filtering
+// Attach watch.js for bad word filtering RICSI TETTE IDE
 const watch = require("./events/watch.js");
 watch.execute(client);
 
