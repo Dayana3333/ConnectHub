@@ -26,7 +26,7 @@ module.exports = {
       const member = message.mentions.members.first();
       if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.reset @Felhasználó`');
 
-       await message.channel.send(`✅ Reset command received for ${member}`);
+      await message.channel.send(`✅ Reset command received for ${member}`);
 
       // Delete warnings
       punishments.delete(member.id);
