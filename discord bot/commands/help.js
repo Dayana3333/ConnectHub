@@ -10,7 +10,7 @@ module.exports = {
       .setDescription(
         `✏️ **.nick <felhasználóID> <új név / clear>** - Becenév módosítása vagy törlése.\n` +
         `ℹ️ **.help** - Kiírja az elérhető parancsokat.\n` +
-        `📖 **.szab** - Szerver szabályzat kíirása./.rules Displays the server rules.\n` +
+        `📖 **.szab** - Szerver szabályzat kíirása. \n` +
         `😀 **.emojilist** - Megjeleníti a jelenlegi emojikat a szerveren. \n\n` +
         /*`**.start** Bot elinditása.\n` +
         `**.reload** Bot újrainditása.\n` +
