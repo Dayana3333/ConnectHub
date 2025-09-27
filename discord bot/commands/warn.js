@@ -28,6 +28,8 @@ module.exports = {
 
       await message.channel.send(`✅ Reset command received for ${member}`);
 
+      await message.reply(`✅ Reset command received for ${member}`);
+
       // Delete warnings
       punishments.delete(member.id);
       /*
