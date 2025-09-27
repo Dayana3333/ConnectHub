@@ -5,16 +5,14 @@ module.exports = {
   async execute(message, args, client) {
     // Check bot permissions
     if (!message.guild.members.me.permissions.has('Administrator')) {
-      return message.reply(
-        '❌ Nincs elég jogosultságom! Adj nekem Administrator szerepet, hogy létrehozhassam a Muted role-t.'
-      );
+      return message.reply(`❌ I don't have Administrator role to create the Muted role!`);
     }
 
     let mutedRole = message.guild.roles.cache.find(r => r.name === "Muted");
 
     if (!mutedRole) {
       try {
-        console.log(`[INFO] Nincs "Muted" role a ${message.guild.name} szerveren. Létrehozás...`);
+        message.reply(`Muted role doesn't exist on this server yet, creating it...`)
 
         mutedRole = await message.guild.roles.create({
           name: "Muted",
@@ -36,21 +34,17 @@ module.exports = {
               Speak: false,
               Connect: false
             });
-            console.log(`[INFO] Permissions set for channel: ${channel.name}`);
           } catch (err) {
-            console.error(`[ERROR] Cannot set permissions for channel ${channel.name}:`, err);
+            await message.reply(`❌ Cannot set permissions for channel ${channel.name}: ${err.message}`)
           }
         }
 
-        console.log(`[INFO] Muted role létrehozva és beállítva a ${message.guild.name} szerveren.`);
-        return message.reply(`✅ A Muted role sikeresen létrehozva a ${message.guild.name} szerveren!`);
+        return message.reply(`✅ Muted role successfully created in the ${message.guild.name} server!`);
       } catch (err) {
-        console.error(`[ERROR] Nem tudtam létrehozni a Muted rangot:`, err);
-        return message.reply(`❌ Hiba történt a Muted role létrehozásakor: ${err.message}`);
+        return message.reply(`❌ There was an error creating the Muted role: ${err.message}`);
       }
     } else {
-      console.log(`[INFO] Már létezik Muted role a ${message.guild.name} szerveren.`);
-      return message.reply(`⚠️ Már létezik Muted role a szerveren.`);
+      return message.reply(`❌ Muted role already exists on this server.`);
     }
   }
 };
