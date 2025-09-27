@@ -2,7 +2,7 @@
 const { PermissionsBitField, EmbedBuilder } = require('discord.js');
 const { punishments } = require('../mybot_project/utils/spamData.js');
 
-const LOG_CHANNEL_ID = '1421151297284997210';
+const LOG_CHANNEL_ID = '1421151297284997210'; // 1416515207009927339 ConnectHub némítások channelID
 
 module.exports = {
   name: 'reset',
@@ -17,7 +17,7 @@ module.exports = {
 
     punishments.delete(member.id);
 
-    // Remove any active timeout
+    // Timeout törlése
     try {
       await member.timeout(null);
     } catch (err) {
@@ -38,12 +38,12 @@ module.exports = {
     try {
       const logChannel = await message.guild.channels.fetch(LOG_CHANNEL_ID);
       if (!logChannel) {
-        console.log(`Log channel not found: ${LOG_CHANNEL_ID}`);
+        console.log(`Log csatorna nem találahtó: ${LOG_CHANNEL_ID}`);
       } else {
         await logChannel.send({ embeds: [embed] });
       }
     } catch (err) {
-      console.error(`Failed to log reset/warn: ${err.message}`);
+      console.error(`Nem sikerült logolni reset/warn: ${err.message}`);
     }
 
     return;

@@ -34,17 +34,16 @@ module.exports = {
       )
       .setTimestamp();
 
-
     // ==== CSATORNÁBA LOGOLÁS ====
     try {
       const logChannel = await message.guild.channels.fetch(LOG_CHANNEL_ID);
       if (!logChannel) {
-        console.log(`Log channel not found: ${LOG_CHANNEL_ID}`);
+        console.log(`Log csatorna nem található: ${LOG_CHANNEL_ID}`);
       } else {
         await logChannel.send({ embeds: [embed] });
       }
     } catch (err) {
-      console.error(`Failed to log reset/warn: ${err.message}`);
+      console.error(`Nem sikerült logolni reset/warn: ${err.message}`);
     }
 
     // ======= SZANKCIÓK =======
