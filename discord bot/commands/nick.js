@@ -1,4 +1,4 @@
-const badWords = require('./badwords.js');
+const badWords = require('../badwords.js');
 
 module.exports = {
   name: 'nick',
