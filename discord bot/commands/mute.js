@@ -32,7 +32,7 @@ module.exports = {
     // némítás
     await member.roles.add(mutedRole, `Tempmute: ${reason}`);
 
-    // Embed a parancs csatornájába
+    // Embed a logoláshoz
     const muteEmbed = new EmbedBuilder()
       .setTitle('🔇 Felhasználó némítva')
       .setColor('DarkRed')
@@ -43,11 +43,6 @@ module.exports = {
         { name: 'Némította', value: `${message.author}`, inline: true }
       )
       .setTimestamp();
-
-    await message.channel.send({
-      embeds: [muteEmbed],
-      allowedMentions: { users: [member.id, message.author.id] }
-    });
 
     // === LOGOLÁS a muteLog csatornába ===
     const guildLogs = logSettings[message.guild.id];
