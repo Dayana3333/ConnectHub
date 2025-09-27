@@ -50,8 +50,6 @@ module.exports = {
         )
         .setTimestamp();
 
-      await message.channel.send({ embeds: [embed] });
-
       // ==== CSATORNÁBA LOGOLÁS ====
       const logChannel = message.guild.channels.cache.get(LOG_CHANNEL_ID);
       if (logChannel) {
@@ -79,7 +77,6 @@ module.exports = {
       )
       .setTimestamp();
 
-    await message.channel.send({ embeds: [embed] });
 
     // ==== CSATORNÁBA LOGOLÁS ====
     const logChannel = message.guild.channels.cache.get(LOG_CHANNEL_ID);
