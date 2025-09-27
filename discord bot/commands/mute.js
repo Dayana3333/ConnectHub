@@ -64,31 +64,6 @@ module.exports = {
     setTimeout(async () => {
       if (member.roles.cache.has(mutedRole.id)) {
         await member.roles.remove(mutedRole, 'Tempmute lejárt');
-
-        const unmuteEmbed = new EmbedBuilder()
-          .setTitle('✅ Felhasználó némítása lejárt')
-          .setColor('Green')
-          .addFields(
-            { name: 'Felhasználó', value: `${member}`, inline: true },
-            { name: 'Időtartam', value: duration, inline: true }
-          )
-          .setTimestamp();
-
-        // csatornába jelzés
-        await message.channel.send({
-          embeds: [unmuteEmbed],
-          allowedMentions: { users: [member.id] }
-        });
-
-        // === LOGOLÁS a muteLog csatornába a feloldásról ===
-        if (guildLogs && guildLogs.muteLog) {
-          const logChannel = message.guild.channels.cache.get(guildLogs.muteLog);
-          if (logChannel) {
-            logChannel.send({
-              embeds: [unmuteEmbed.setFooter({ text: 'Mute log' })]
-            }).catch(console.error);
-          }
-        }
       }
     }, time);
   }
