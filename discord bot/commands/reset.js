@@ -17,7 +17,7 @@ module.exports = {
 
     punishments.delete(member.id);
 
-    await message.channel.send(`✅ Reset command received for ${target}`);
+    await message.channel.send(`✅ Reset command received for ${member}`);
 
     // Remove any active timeout
     try {
