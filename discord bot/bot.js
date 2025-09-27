@@ -447,7 +447,7 @@ const activities = [
   { name: "új tagokat a szerveren.", type: ActivityType.Listening },
 ];
 
-client.on("ready", () => {
+client.on("clientReady", () => {
   console.log(`✅ Bejelentkezve: ${client.user.tag}`);
 
   let activityIndex = 0;
