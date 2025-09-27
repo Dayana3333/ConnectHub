@@ -16,7 +16,7 @@ function normalize(text) {
     .replace(/\$/g, "s")
     .replace(/vv/g, "w")
     .replace(/v/g, "u")
-    .replace(/[^a-z0-9]/g, "");
+  //  .replace(/[^a-z0-9]/g, "");
 }
 
 const badRegexes = badWords.map(word => {
