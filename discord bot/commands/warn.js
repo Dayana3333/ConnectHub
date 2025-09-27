@@ -74,23 +74,3 @@ module.exports = {
     }
   },
 };
-
-
-/* try {
-      if (warns === 3) {
-        await member.timeout(30 * 60 * 1000, '3 warn – 30 perc felfüggesztés');
-        await message.channel.send({ embeds: [embed] });(`🔇 30 perces felfüggesztést kaptál a(z) ${message.guild.name} szerveren (3 figyelmeztetés).`);
-        await message.channel.send({ embeds: [embed] });(`${member} 30 percre felfüggesztve (timeout) 3 figyelmeztetés miatt.`);
-      } else if (warns === 5) {
-        await member.timeout(60 * 60 * 1000, '5 warn – 1 óra felfüggesztés');
-        await message.channel.send({ embeds: [embed] });(`🔇 1 órás felfüggesztést kaptál a(z) ${message.guild.name} szerveren (5 figyelmeztetés).`);
-        await message.channel.send({ embeds: [embed] });(`${member} 1 órára felfüggesztve (timeout) 5 figyelmeztetés miatt.`);
-      } else if (warns >= 6) {
-        await member.timeout(7 * 24 * 60 * 60 * 1000, '6+ warn – hosszú felfüggesztés');
-        await message.channel.send({ embeds: [embed] });(`🚫 Hosszú felfüggesztést kaptál a(z) ${message.guild.name} szerveren spamelés miatt.`);
-        await message.channel.send({ embeds: [embed] });(`${member} egy napra felfüggesztve felfüggesztve (timeout) 6+ figyelmeztetés miatt.`);
-      }
-    } catch (err) {
-      await message.reply(`❌ Nem sikerült timeoutolni a tagot: ${err.message}`);
-    }
-*/
