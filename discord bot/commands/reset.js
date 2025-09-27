@@ -2,6 +2,8 @@
 const { PermissionsBitField, EmbedBuilder } = require('discord.js');
 const { punishments } = require('../mybot_project/utils/spamData.js');
 
+const LOG_CHANNEL_ID = '1421151297284997210'; 
+
 module.exports = {
   name: 'reset',
   description: 'Nullázza egy felhasználó warnjait (.reset @user)',
@@ -25,6 +27,11 @@ module.exports = {
       )
       .setTimestamp();
 
-    await message.channel.send({ embeds: [embed] });
-  },
+   const logChannel = message.guild.channels.cache.get(LOG_CHANNEL_ID);
+      if (logChannel) {
+        logChannel.send({ embeds: [embed] });
+      }
+
+      return;
+    },
 };
