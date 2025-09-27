@@ -21,7 +21,9 @@ module.exports = {
 
       punishments.delete(member.id);
 
-      await member.timeout(60 * 60 * 1000, '3 warn – 30 perc felfüggesztés');
+      if (reset == 1){
+        await member.timeout(60 * 60 * 1000, '3 warn – 30 perc felfüggesztés');
+      }
 
       const embed = new EmbedBuilder()
         .setTitle('♻️ Figyelmeztetések nullázva')
