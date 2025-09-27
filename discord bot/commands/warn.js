@@ -71,6 +71,17 @@ module.exports = {
 
     await message.channel.send({ embeds: [embed] });
 
+    // Logolás log csatornába
+    const guildLogs = logSettings[message.guild.id];
+    if (guildLogs && guildLogs.muteLog) {
+      const logChannel = message.guild.channels.cache.get(guildLogs.muteLog);
+      if (logChannel) {
+        logChannel.send({
+          embeds: [muteEmbed.setFooter({ text: 'Warn log' })]
+        }).catch(console.error);
+      }
+    }
+
     // ======= SZANKCIÓK =======
     try {
       if (warns === 3) {
