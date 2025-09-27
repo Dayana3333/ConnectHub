@@ -16,27 +16,6 @@ module.exports = {
       return message.reply('Használat: `.warn @felhasználó` vagy `.reset @felhasználó`');
     }
 
-    // ======= RESET =======
-    if (args[0].toLowerCase() === 'reset') {
-      const target = message.mentions.members.first();
-      if (!target) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.reset @Felhasználó`');
-
-      await message.channel.send(`✅ Reset command received for ${target}`);
-
-      // Delete warnings
-      punishments.delete(target.id);
-
-      // Message in the same channel
-      await message.channel.send(`✅ Reset command received for ${target}`);
-
-      // Remove any active timeout
-      try {
-        await message.channel.send(`Trying to give timeout...`);
-        await member.timeout(60 * 60 * 1000); // Passing null removes timeout
-      } catch (err) {
-        await message.channel.send(`❌ Nem sikerült timeoutot törölni: ${err.message}`);
-      }
-    }
     // ======= WARN =======
     const member = message.mentions.members.first();
     if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn @Felhasználó`');

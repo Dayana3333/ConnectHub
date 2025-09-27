@@ -2,7 +2,7 @@
 const { PermissionsBitField, EmbedBuilder } = require('discord.js');
 const { punishments } = require('../mybot_project/utils/spamData.js');
 
-const LOG_CHANNEL_ID = '1421151297284997210'; 
+const LOG_CHANNEL_ID = '1421151297284997210';
 
 module.exports = {
   name: 'reset',
@@ -17,6 +17,16 @@ module.exports = {
 
     punishments.delete(member.id);
 
+    await message.channel.send(`✅ Reset command received for ${target}`);
+
+    // Remove any active timeout
+    try {
+      await message.channel.send(`Trying to give timeout...`);
+      await member.timeout(60 * 60 * 1000); // Passing null removes timeout
+    } catch (err) {
+      await message.channel.send(`❌ Nem sikerült timeoutot törölni: ${err.message}`);
+    }
+
     const embed = new EmbedBuilder()
       .setTitle('♻️ Figyelmeztetések nullázva')
       .setColor('Green')
@@ -27,11 +37,18 @@ module.exports = {
       )
       .setTimestamp();
 
-   const logChannel = message.guild.channels.cache.get(LOG_CHANNEL_ID);
-      if (logChannel) {
-        logChannel.send({ embeds: [embed] });
+    // ==== CSATORNÁBA LOGOLÁS ====
+    try {
+      const logChannel = await message.guild.channels.fetch(LOG_CHANNEL_ID);
+      if (!logChannel) {
+        console.log(`Log channel not found: ${LOG_CHANNEL_ID}`);
+      } else {
+        await logChannel.send({ embeds: [embed] });
       }
+    } catch (err) {
+      console.error(`Failed to log reset/warn: ${err.message}`);
+    }
 
-      return;
-    },
+    return;
+  },
 };
