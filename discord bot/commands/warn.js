@@ -2,9 +2,10 @@
 const { PermissionsBitField, EmbedBuilder } = require('discord.js');
 const { punishments } = require('../mybot_project/utils/spamData.js');
 
-
+/*
 // Reset counter map
 const resets = new Map();
+*/
 
 
 const LOG_CHANNEL_ID = '1421151297284997210'; // 1416515207009927339 ConnectHub némítások channelID
@@ -23,13 +24,17 @@ module.exports = {
 
     // ======= RESET =======
     if (args[0].toLowerCase() === 'reset') {
-      const member = message.mentions.members.first();
-      if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.reset @Felhasználó`');
+      const target = message.mentions.members.first();
+      if (!target) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.reset @Felhasználó`');
 
-      await message.channel.send(`✅ Reset command received for ${member}`);
+      await message.channel.send(`✅ Reset command received for ${target}`);
 
       // Delete warnings
-      punishments.delete(member.id);
+      punishments.delete(target.id);
+
+      // Message in the same channel
+      await message.channel.send(`✅ Reset command received for ${target}`);
+
       /*
       // Remove any active timeout
       try {
@@ -60,13 +65,12 @@ module.exports = {
         .setTitle('♻️ Figyelmeztetések nullázva')
         .setColor('Green')
         .addFields(
-          { name: 'Felhasználó', value: `${member}`, inline: true },
+          { name: 'Felhasználó', value: `${target}`, inline: true },
           { name: 'Moderátor', value: `${message.author}`, inline: true },
-          { name: 'Státusz', value: `Minden figyelmeztetés törölve ✅\nReset száma: ${resetCount}`, inline: false }
+          { name: 'Státusz', value: `Minden figyelmeztetés törölve ✅`, inline: false } //\nReset száma: ${resetCount}
         )
         .setTimestamp();
-      }
-
+    }
     // ======= WARN =======
     const member = message.mentions.members.first();
     if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn @Felhasználó`');
@@ -87,9 +91,15 @@ module.exports = {
 
 
     // ==== CSATORNÁBA LOGOLÁS ====
-    const logChannel = message.guild.channels.cache.get(LOG_CHANNEL_ID);
-    if (logChannel) {
-      logChannel.send({ embeds: [embed] });
+    try {
+      const logChannel = await message.guild.channels.fetch(LOG_CHANNEL_ID);
+      if (!logChannel) {
+        console.log(`Log channel not found: ${LOG_CHANNEL_ID}`);
+      } else {
+        await logChannel.send({ embeds: [embed] });
+      }
+    } catch (err) {
+      console.error(`Failed to log reset/warn: ${err.message}`);
     }
 
     // ======= SZANKCIÓK =======
