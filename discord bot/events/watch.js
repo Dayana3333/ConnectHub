@@ -20,10 +20,7 @@ function normalize(text) {
 }
 
 const badRegexes = badWords.map(word => {
-  const pattern = normalize(word)
-    .split("")
-    .map(ch => ch + "+")
-    .join("");
+  const pattern = "\\b" + normalize(word) + "\\b"; // \b = word boundary
   return new RegExp(pattern, "i");
 });
 
@@ -31,6 +28,7 @@ const badRegexes = badWords.map(word => {
 module.exports.execute = (client) => {
   client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
+    if (message.content.startsWith(".")) return; // ignore commands
 
     const normalizedMsg = normalize(message.content);
 
