@@ -30,11 +30,12 @@ module.exports = {
       resetCount++;
       resets.set(member.id, resetCount);
 
-      // Remove timeout completely
-      try {
-        await member.timeout(60 * 60 * 1000);
-      } catch (err) {
-        console.log(`Nem sikerült timeoutot törölni: ${err.message}`);
+      if (resetCount === 1) {
+        try {
+          await member.timeout(60 * 60 * 1000, 'Reset 1 – 1 órás felfüggesztés');
+        } catch (err) {
+          console.log(`Nem sikerült timeoutot törölni: ${err.message}`);
+        }
       }
 
       const embed = new EmbedBuilder()
