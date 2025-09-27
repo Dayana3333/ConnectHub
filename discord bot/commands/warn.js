@@ -11,7 +11,7 @@ module.exports = {
     }
 
     if (!args.length) {
-      return message.reply('Használat: `.warn @felhasználó` vagy `.warn reset @felhasználó`');
+      return message.reply('Használat: `.warn @felhasználó` vagy `.reset @felhasználó`');
     }
 
     // ======= RESET =======
@@ -42,7 +42,7 @@ module.exports = {
     punishments.set(member.id, warns);
 
     const embed = new EmbedBuilder()
-        .setTitle('⚠ Warn kiadva') // ide légyszi emojit
+        .setTitle('⚠️ Warn kiadva') 
         .setColor('Yellow')
         .addFields(
           { name: 'Felhasználó', value: `${member}`, inline: true },
