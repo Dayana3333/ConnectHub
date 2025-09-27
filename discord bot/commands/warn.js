@@ -20,6 +20,15 @@ module.exports = {
       if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn reset @Felhasználó`');
       punishments.delete(member.id);
 
+      if (member.isCommunicationDisabled()) {
+      try {
+        await member.timeout(null, 'Warn reset – timeout eltávolítva');
+      } catch (err) {
+        // Could fail if bot lacks permissions
+        console.log(`Nem sikerült timeoutot törölni: ${err.message}`);
+      }
+    }
+
       const embed = new EmbedBuilder()
         .setTitle('♻️ Figyelmeztetések nullázva')
         .setColor('Green')
