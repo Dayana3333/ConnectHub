@@ -15,7 +15,7 @@ const fs = require("fs");
 const path = require("path");
 const config = require("./config.json");
 const messageDelete = require("./events/messageDelete");
-const warn = require("mybot_project/commands/warn.js")
+const warn = require("warn.js")
 
 // ---------------------- BOT LÉTREHOZÁSA ----------------------
 const client = new Client({
