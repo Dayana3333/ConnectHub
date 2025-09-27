@@ -3,7 +3,7 @@ const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 
-const logSettingsPath = path.join(__dirname, '..', 'logSettings.json');
+const logSettingsPath = path.join(__dirname, '..', '..', 'logSettings.json');
 
 module.exports = {
   name: 'mute',
