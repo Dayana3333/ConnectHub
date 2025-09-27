@@ -31,7 +31,7 @@ module.exports = {
       }
 
       const embed = new EmbedBuilder()
-        .setTitle('♻️ Figyelmeztetések nullázva MEOW MEOW MEOW')
+        .setTitle('♻️ Figyelmeztetések nullázva')
         .setColor('Green')
         .addFields(
           { name: 'Felhasználó', value: `${member}`, inline: true },
