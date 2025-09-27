@@ -2,8 +2,10 @@
 const { PermissionsBitField, EmbedBuilder } = require('discord.js');
 const { punishments } = require('../mybot_project/utils/spamData.js');
 
+/*
 // Reset counter map
 const resets = new Map();
+*/
 
 const LOG_CHANNEL_ID = '1421151297284997210'; // 1416515207009927339 ConnectHub némítások channelID
 
@@ -27,18 +29,29 @@ module.exports = {
       // Delete warnings
       punishments.delete(member.id);
 
+      // Remove any active timeout
+      try {
+        await message.channel.send(`Trying to give timeout...`);
+        await member.timeout(60 * 60 * 1000); // Passing null removes timeout
+      } catch (err) {
+        await message.channel.send(`❌ Nem sikerült timeoutot törölni: ${err.message}`);
+      }
+
+      /*
       // Increment reset counter
       let resetCount = resets.get(member.id) || 0;
       resetCount++;
       resets.set(member.id, resetCount);
+      /
 
-      if (resetCount === 1) {
+      / if (resetCount === 1) {
         try {
           await member.timeout(60 * 60 * 1000, 'Reset 1 – 1 órás felfüggesztés');
         } catch (err) {
-          console.log(`Nem sikerült timeoutot törölni: ${err.message}`);
+          console.log(Nem sikerült timeoutot törölni: ${err.message});
         }
       }
+      */
 
       const embed = new EmbedBuilder()
         .setTitle('♻️ Figyelmeztetések nullázva')
