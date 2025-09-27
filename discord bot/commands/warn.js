@@ -36,16 +36,6 @@ module.exports = {
       } catch (err) {
         await message.channel.send(`❌ Nem sikerült timeoutot törölni: ${err.message}`);
       }
-
-      const embed = new EmbedBuilder()
-        .setTitle('♻️ Figyelmeztetések nullázva')
-        .setColor('Green')
-        .addFields(
-          { name: 'Felhasználó', value: `${target}`, inline: true },
-          { name: 'Moderátor', value: `${message.author}`, inline: true },
-          { name: 'Státusz', value: `Minden figyelmeztetés törölve ✅`, inline: false } //\nReset száma: ${resetCount}
-        )
-        .setTimestamp();
     }
     // ======= WARN =======
     const member = message.mentions.members.first();
