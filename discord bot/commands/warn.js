@@ -21,13 +21,12 @@ module.exports = {
       punishments.delete(member.id);
 
       if (member.isCommunicationDisabled()) {
-      try {
-        await member.timeout(null, 'Warn reset – timeout eltávolítva');
-      } catch (err) {
-        // Could fail if bot lacks permissions
-        console.log(`Nem sikerült timeoutot törölni: ${err.message}`);
+        try {
+          await member.timeout(null, 'Warn reset – timeout eltávolítva');
+        } catch (err) {
+          console.log(`Nem sikerült timeoutot törölni: ${err.message}`);
+        }
       }
-    }
 
       const embed = new EmbedBuilder()
         .setTitle('♻️ Figyelmeztetések nullázva')
@@ -41,7 +40,7 @@ module.exports = {
 
       return message.channel.send({ embeds: [embed] });
     }
-  
+
     // ======= WARN =======
     const member = message.mentions.members.first();
     if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn @Felhasználó`');
@@ -51,16 +50,16 @@ module.exports = {
     punishments.set(member.id, warns);
 
     const embed = new EmbedBuilder()
-        .setTitle('⚠️ Warn kiadva') 
-        .setColor('Yellow')
-        .addFields(
-          { name: 'Felhasználó', value: `${member}`, inline: true },
-          { name: 'Moderátor', value: `${message.author}`, inline: true },
-          { name: 'Warnok száma', value: `${warns}`, inline: true }
-        )
-        .setTimestamp();
+      .setTitle('⚠️ Warn kiadva')
+      .setColor('Yellow')
+      .addFields(
+        { name: 'Felhasználó', value: `${member}`, inline: true },
+        { name: 'Moderátor', value: `${message.author}`, inline: true },
+        { name: 'Warnok száma', value: `${warns}`, inline: true }
+      )
+      .setTimestamp();
 
-      await message.channel.send({ embeds: [embed] });
+    await message.channel.send({ embeds: [embed] });
 
     // ======= SZANKCIÓK =======
     try {
@@ -101,4 +100,4 @@ module.exports = {
     } catch (err) {
       await message.reply(`❌ Nem sikerült timeoutolni a tagot: ${err.message}`);
     }
-*/      
+*/
