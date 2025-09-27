@@ -4,9 +4,16 @@ module.exports = {
     async execute(guild) {
         let mutedRole = guild.roles.cache.find(r => r.name === "Muted");
 
+        // Find a text channel to send feedback
+        const textChannel = guild.channels.cache.find(
+            ch => ch.type === 0 && ch.permissionsFor(guild.members.me).has('SendMessages')
+        ); // 0 = GuildText in Discord.js v14+
+
         if (!mutedRole) {
             try {
-                console.log(`[INFO] Nincs "Muted" role a ${guild.name} szerveren. Létrehozás...`);
+                 // console.log(`[INFO] Nincs "Muted" role a ${guild.name} szerveren. Létrehozás...`);
+                if (textChannel)
+                    await textChannel.send(`[INFO] Nincs "Muted" role a ${guild.name} szerveren. Létrehozás...`);
 
                 // Létrehozzuk a Muted rangot
                 mutedRole = await guild.roles.create({
@@ -22,15 +29,26 @@ module.exports = {
                         AddReactions: false,
                         Speak: false,
                         Connect: false
-                    }).catch(err => console.error(`[ERROR] Nem sikerült beállítani a jogosultságokat:`, err));
+                    }).catch(async err => {
+                        // console.error(`[ERROR] Nem sikerült beállítani a jogosultságokat:`, err);
+                        if (textChannel) await textChannel.send(`[ERROR] Nem sikerült beállítani a jogosultságokat a csatornán: ${channel.name}`);
+                    });
                 }
 
-                console.log(`[INFO] Muted role létrehozva és beállítva a ${guild.name} szerveren.`);
+                // console.log(`[INFO] Muted role létrehozva és beállítva a ${guild.name} szerveren.`);
+                if (textChannel)
+                    await textChannel.send(`[INFO] Muted role létrehozva és beállítva a ${guild.name} szerveren.`);
+
             } catch (err) {
-                console.error(`[ERROR] Nem tudtam létrehozni a Muted rangot a ${guild.name} szerveren:`, err);
+                // console.error(`[ERROR] Nem tudtam létrehozni a Muted rangot a ${guild.name} szerveren:`, err);
+                if (textChannel)
+                    await textChannel.send(`[ERROR] Nem tudtam létrehozni a Muted rangot a ${guild.name} szerveren.`);
             }
+
         } else {
-            console.log(`[INFO] Már létezik Muted role a ${guild.name} szerveren.`);
+            // console.log(`[INFO] Már létezik Muted role a ${guild.name} szerveren.`);
+            if (textChannel)
+                await textChannel.send(`[INFO] Már létezik Muted role a ${guild.name} szerveren.`);
         }
     }
 };
