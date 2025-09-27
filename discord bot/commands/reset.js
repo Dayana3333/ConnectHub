@@ -17,12 +17,9 @@ module.exports = {
 
     punishments.delete(member.id);
 
-    await message.channel.send(`✅ Reset command received for ${member}`);
-
     // Remove any active timeout
     try {
-      await message.channel.send(`Trying to give timeout...`);
-      await member.timeout(60 * 60 * 1000); // Passing null removes timeout
+      await member.timeout(null);
     } catch (err) {
       await message.channel.send(`❌ Nem sikerült timeoutot törölni: ${err.message}`);
     }
