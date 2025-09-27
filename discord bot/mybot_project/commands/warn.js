@@ -28,7 +28,7 @@ module.exports = {
           { name: 'Státusz', value: 'Minden figyelmeztetés törölve ✅', inline: false }
         )
         .setTimestamp();
-      return messageCreate.channel.send({ embeds: [embed] });
+      return message.channel.send({ embeds: [embed] });
     }
 
     // ======= WARN =======
@@ -48,7 +48,7 @@ module.exports = {
   // Map to store warnings
   const punishments = new Map();
 
-  client.on('messageCreate', async (message) => {
+  client.on('message', async (message) => {
       if (message.author.bot) return; // Ignore bot messages
       if (!message.content.startsWith(prefix)) return;
 
