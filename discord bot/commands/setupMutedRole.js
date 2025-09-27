@@ -1,6 +1,6 @@
 // setupMutedRole.js
 module.exports = {
-  name: 'setupMutedRole',
+  name: 'setupmutedrole',
   description: 'Létrehozza a Muted szerepet minden csatornán',
   async execute(message, args, client) {
     // Check if bot has Administrator
