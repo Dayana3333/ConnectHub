@@ -26,9 +26,11 @@ module.exports = {
       const member = message.mentions.members.first();
       if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.reset @Felhasználó`');
 
+       await message.channel.send(`✅ Reset command received for ${member}`);
+
       // Delete warnings
       punishments.delete(member.id);
-
+      /*
       // Remove any active timeout
       try {
         await message.channel.send(`Trying to give timeout...`);
@@ -36,6 +38,7 @@ module.exports = {
       } catch (err) {
         await message.channel.send(`❌ Nem sikerült timeoutot törölni: ${err.message}`);
       }
+      */
 
       /*
       // Increment reset counter
