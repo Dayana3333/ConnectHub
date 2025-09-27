@@ -108,7 +108,6 @@ module.exports = {
         await member.timeout(30 * 60 * 1000, '3 warn – 30 perc felfüggesztés');
         await member.send(`🔇 30 perces felfüggesztést kaptál a(z) ${message.guild.name} szerveren (3 figyelmeztetés).`);
         await message.channel.send(`${member} 30 percre felfüggesztve (timeout) 3 figyelmeztetés miatt.`);
-        await message.channel.send(`✅ Reset command received for ${member}`);
       } else if (warns === 5) {
         await member.timeout(60 * 60 * 1000, '5 warn – 1 óra felfüggesztés');
         await member.send(`🔇 1 órás felfüggesztést kaptál a(z) ${message.guild.name} szerveren (5 figyelmeztetés).`);
