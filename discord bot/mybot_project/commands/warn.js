@@ -17,7 +17,7 @@ module.exports = {
     // ======= RESET =======
     if (args[0].toLowerCase() === 'reset') {
       const member = message.mentions.members.first();
-      if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn reset @Felhasználó`');
+      if (!member) return messageCreate.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn reset @Felhasználó`');
       punishments.delete(member.id);
       const embed = new EmbedBuilder()
         .setTitle('♻️ Figyelmeztetések nullázva')
@@ -28,11 +28,11 @@ module.exports = {
           { name: 'Státusz', value: 'Minden figyelmeztetés törölve ✅', inline: false }
         )
         .setTimestamp();
-      return message.channel.send({ embeds: [embed] });
+      return messageCreate.channel.send({ embeds: [embed] });
     }
 
     // ======= WARN =======
-    const member = message.mentions.members.first();
+    const member = messageCreate.mentions.members.first();
     if (!member) return messageCreate.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn @Felhasználó`');
 
     let warns = punishments.get(member.id) || 0;
