@@ -65,15 +65,7 @@ module.exports = {
           { name: 'Státusz', value: `Minden figyelmeztetés törölve ✅\nReset száma: ${resetCount}`, inline: false }
         )
         .setTimestamp();
-
-      // ==== CSATORNÁBA LOGOLÁS ====
-      const logChannel = message.guild.channels.cache.get(LOG_CHANNEL_ID);
-      if (logChannel) {
-        logChannel.send({ embeds: [embed] });
       }
-
-      return;
-    }
 
     // ======= WARN =======
     const member = message.mentions.members.first();
