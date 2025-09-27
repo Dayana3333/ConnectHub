@@ -36,11 +36,5 @@ module.exports = {
                 { name: 'Indok', value: reason, inline: false }
             )
             .setTimestamp();
-
-        // Küldés embed + ping
-        await message.channel.send({
-            embeds: [unmuteEmbed],
-            allowedMentions: { users: [member.id, message.author.id] }
-        });
     }
 };
