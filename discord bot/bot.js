@@ -16,6 +16,7 @@ const path = require("path");
 const config = require("./config.json");
 const messageDelete = require("./events/messageDelete");
 
+
 // ---------------------- BOT LÉTREHOZÁSA ----------------------
 const client = new Client({
   intents: [
@@ -50,6 +51,7 @@ if (fs.existsSync(commandsPath)) {
 
 // Attach watch.js for bad word filtering RICSI TETTE IDE
 const watch = require("./events/watch.js");
+const logHandler = require("./events/logHandler.js");
 watch.execute(client);
 
 // ---------------------- ADATOK MENTÉSE ----------------------
@@ -358,6 +360,7 @@ client.on("messageCreate", async (message) => {
     }
   }
 });
+
 /*
 // ---------------------- LOG KEZELÉS ----------------------
 client.on("messageCreate", async (message) => {
@@ -472,6 +475,7 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
   }
 });
 */
+
 // ---------------------- AKTIVITÁSOK ----------------------
 const activities = [
   { name: ".help | Bot parancsok megtekintése.", type: ActivityType.Playing },
