@@ -1,6 +1,6 @@
 // commands/reset.js
 const { PermissionsBitField, EmbedBuilder } = require('discord.js');
-const { punishments } = require('../utils/spamData.js');
+const { punishments } = require('../mybot_project/utils/spamData.js');
 
 module.exports = {
   name: 'reset',
