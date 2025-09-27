@@ -32,7 +32,7 @@ module.exports = {
 
       return message.channel.send({ embeds: [embed] });
     }
-
+  
     // ======= WARN =======
     const member = message.mentions.members.first();
     if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn @Felhasználó`');
@@ -41,7 +41,17 @@ module.exports = {
     warns++;
     punishments.set(member.id, warns);
 
-    await message.channel.send(`${member.user.tag} figyelmeztetve lett. (${warns} figyelmeztetés összesen)`);
+    const embed = new EmbedBuilder()
+        .setTitle('⚠ Warn kiadva') // ide légyszi emojit
+        .setColor('Yellow')
+        .addFields(
+          { name: 'Felhasználó', value: `${member}`, inline: true },
+          { name: 'Moderátor', value: `${message.author}`, inline: true },
+          { name: 'Warnok száma', value: `${warns}`, inline: false }
+        )
+        .setTimestamp();
+
+      await message.channel.send({ embeds: [embed] });
 
     // ======= SZANKCIÓK =======
     try {
