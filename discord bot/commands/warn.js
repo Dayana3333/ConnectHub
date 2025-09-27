@@ -16,17 +16,12 @@ module.exports = {
 
     // ======= RESET =======
     if (args[0].toLowerCase() === 'reset') {
-      const memberMention = message.mentions.members.first();
-      if (!memberMention) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.reset @Felhasználó`');
-
-      const member = await message.guild.members.fetch(memberMention.id);
+      const member = message.mentions.members.first();
+      if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.reset @Felhasználó`');
 
       punishments.delete(member.id);
 
-      await message.reply(`${member.communicationDisabledUntil}`);
-      await message.reply(`${member.communicationDisabledUntilTimestamp}`);
-      
-      await member.timeout(null, "reset");
+      await member.timeout(60 * 60 * 1000, '3 warn – 30 perc felfüggesztés');
 
       const embed = new EmbedBuilder()
         .setTitle('♻️ Figyelmeztetések nullázva')
