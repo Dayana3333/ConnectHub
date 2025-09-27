@@ -33,7 +33,7 @@ module.exports = {
 
     // ======= WARN =======
     const member = message.mentions.members.first();
-    if (!member) return message.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn @Felhasználó`');
+    if (!member) return messageCreate.reply('Adj meg egy felhasználót pingelve! Pl.: `.warn @Felhasználó`');
 
     let warns = punishments.get(member.id) || 0;
     warns++;
