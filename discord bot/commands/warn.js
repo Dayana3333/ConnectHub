@@ -56,7 +56,7 @@ module.exports = {
       } else if (warns >= 6) {
         await member.timeout(7 * 24 * 60 * 60 * 1000, '6+ warn – hosszú felfüggesztés');
         await member.send(`🚫 Hosszú felfüggesztést kaptál a(z) ${message.guild.name} szerveren spamelés miatt.`);
-        await message.channel.send(`${member} hosszú időre felfüggesztve (timeout) 6+ figyelmeztetés miatt.`);
+        await message.channel.send(`${member} egy napra felfüggesztve felfüggesztve (timeout) 6+ figyelmeztetés miatt.`);
       }
     } catch (err) {
       await message.reply(`❌ Nem sikerült timeoutolni a tagot: ${err.message}`);

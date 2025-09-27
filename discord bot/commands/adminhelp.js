@@ -14,9 +14,9 @@ module.exports = {
     const allowedRoles = data[message.guild.id] || [];
 
     // ha nincs engedélyezett rang vagy a user nem rendelkezik velük
-    if (!allowedRoles.some(r => message.member.roles.cache.has(r))) {
-      return message.reply("❌ Nincs jogosultságod ehhez a parancshoz!");
-    }
+    if (!message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
+          return message.reply('❌ Nincs jogosultságod ehhez a parancshoz!');
+      }
 
     const embed = new EmbedBuilder()
       .setColor("#042632")
