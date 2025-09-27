@@ -23,6 +23,9 @@ module.exports = {
 
       punishments.delete(member.id);
 
+      await message.reply(`${member.communicationDisabledUntil}`);
+      await message.reply(`${member.communicationDisabledUntilTimestamp}`);
+      
       await member.timeout(null, "reset");
 
       const embed = new EmbedBuilder()
