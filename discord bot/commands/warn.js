@@ -22,13 +22,8 @@ module.exports = {
       const member = await message.guild.members.fetch(memberMention.id);
 
       punishments.delete(member.id);
-      if (member.isCommunicationDisabled()) {
-        try {
-          await member.timeout(null, 'Warn reset | timeout eltávolítva');
-        } catch (err) {
-          await message.reply(`Nem sikerült: ${err.message}`)
-        }
-      }
+
+      await member.timeout(null);
 
       const embed = new EmbedBuilder()
         .setTitle('♻️ Figyelmeztetések nullázva')
