@@ -6,7 +6,6 @@ module.exports = {
     .setDescription('Küldj egy random idézetet'),
 
   async execute(interaction) {
-    // Immediately defer to avoid Discord timeout
     await interaction.deferReply();
 
     try {
@@ -14,8 +13,8 @@ module.exports = {
       if (!response.ok) throw new Error(`API error: ${response.status}`);
 
       const data = await response.json();
-      const quote = data.data?.[0]?.quoteText || "Nincs idézet elérhető.";
-      const author = data.data?.[0]?.quoteAuthor || "Ismeretlen";
+      const quote = data.quote || "Nincs idézet elérhető."; // ✅ kanye.rest provides 'quote'
+      const author = "Kanye West"; // static, because API doesn’t return author
 
       const randomColor = Math.floor(Math.random() * 16777215);
 
@@ -23,13 +22,12 @@ module.exports = {
         .setColor(randomColor)
         .setTitle('🎬 Random Quote 🎮')
         .setDescription(`"${quote}"\n— **${author}**`)
-        .setFooter({ text: 'Powered by QuoteGarden API' });
+        .setFooter({ text: 'Powered by Kanye REST API' });
 
       await interaction.editReply({ embeds: [embed] });
 
     } catch (err) {
       console.error('Quote command error:', err);
-      // Ensure Discord gets a reply even if the API fails
       if (interaction.deferred || interaction.replied) {
         await interaction.editReply(`❌ Nem sikerült az idézet lehívása: ${err.message}`);
       } else {
