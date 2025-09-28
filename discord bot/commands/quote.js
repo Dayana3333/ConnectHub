@@ -10,7 +10,7 @@ module.exports = {
     await interaction.deferReply();
 
     try {
-      const response = await fetch('https://quote-garden.herokuapp.com/api/v3/quotes/random');
+      const response = await fetch('https://api.quotable.io');
       if (!response.ok) throw new Error(`API error: ${response.status}`);
 
       const data = await response.json();
