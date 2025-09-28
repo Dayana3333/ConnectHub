@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const fetch = require('node-fetch'); // make sure node-fetch installed
+const fetch = require('node-fetch'); // ensure this is installed
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -7,14 +7,14 @@ module.exports = {
     .setDescription('Küldj egy random idézetet'),
 
   async execute(interaction) {
+    // Immediately defer to avoid Discord timeout
     await interaction.deferReply();
 
     try {
       const response = await fetch('https://api.quotegarden.org/api/v3/quotes/random');
-      if (!response.ok) throw new Error('API error');
+      if (!response.ok) throw new Error(`API error: ${response.status}`);
 
       const data = await response.json();
-
       const quote = data.data?.[0]?.quoteText || "Nincs idézet elérhető.";
       const author = data.data?.[0]?.quoteAuthor || "Ismeretlen";
 
@@ -29,8 +29,13 @@ module.exports = {
       await interaction.editReply({ embeds: [embed] });
 
     } catch (err) {
-      console.error('Quote command hiba:', err);
-      await interaction.editReply(`❌ Nem sikerült az idézet lehívása: ${err.message}`);
+      console.error('Quote command error:', err);
+      // Ensure Discord gets a reply even if the API fails
+      if (interaction.deferred || interaction.replied) {
+        await interaction.editReply(`❌ Nem sikerült az idézet lehívása: ${err.message}`);
+      } else {
+        await interaction.reply(`❌ Nem sikerült az idézet lehívása: ${err.message}`);
+      }
     }
   }
 };
