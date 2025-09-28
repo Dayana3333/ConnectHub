@@ -51,8 +51,8 @@ module.exports.execute = (client) => {
             } else if (strikes === 6) {
                 if (mutedRole) {
                     try {
-                        await member.roles.add(mutedRole, "Spam - 5 perces mute");
-                        await message.channel.send(`${message.author} 5 percre lenémítva. 🔇`);
+                        await member.roles.add(mutedRole, "Spam - 2 perces mute");
+                        await message.channel.send(`${message.author} 2 percre lenémítva. 🔇`);
                     } catch (err) {
                         await message.channel.send(`Nem sikerült némítani: ${err.message}`)
                     }
@@ -60,12 +60,12 @@ module.exports.execute = (client) => {
                         try {
                             const freshMember = await message.guild.members.fetch(member.id);
                             if (freshMember.roles.cache.has(mutedRole.id)) {
-                                await freshMember.roles.remove(mutedRole, "5 perces mute lejárt");
+                                await freshMember.roles.remove(mutedRole, "2 perces mute lejárt");
                             }
                         } catch (err) {
                             await message.channel.send(`Nem sikerült levenni a némítást: ${err.message}`)
                         }
-                    }, 5 * 60 * 1000);
+                    }, 2 * 60 * 1000);
                 } else {
                     // Ha nincs muted role
                     await message.channel.send("Muted role nincs beállítva — nem tudtam némítani.");
