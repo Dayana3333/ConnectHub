@@ -50,9 +50,6 @@ if (fs.existsSync(commandsPath)) {
   }
 }
 
-<<<<<<< HEAD
-// Attach watch.js for bad word filtering 
-=======
 // ---------------------- SLASH COMMAND REGISTRATION ----------------------
 const rest = new REST({ version: "10" }).setToken(config.token);
 
@@ -90,7 +87,6 @@ client.on("interactionCreate", async interaction => {
 });
 
 // Attach watch.js for bad word filtering RICSI TETTE IDE
->>>>>>> 0515a6fe3e6b7ac070e0e60e6d9c5df67efb54e1
 const watch = require("./events/watch.js");
 watch.execute(client);
 
