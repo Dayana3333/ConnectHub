@@ -133,10 +133,15 @@ client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
   // 🔒 ANTI-LINK
-  const linkPattern =
-    /(https?:\/\/)?(www\.)?(discord\.gg|discord\.com\/invite)\/[a-zA-Z0-9]+/i;
-    /(https?:\/\/)?(www\.)?(tenor\.gg|tenor\.com\/gif)\/[a-zA-Z0-9]+/i;
-  if (linkPattern.test(message.content)) {
+  const linkPattern = /((https?:\/\/)|www\.)[^\s]+/i;
+  const gifPattern = /\.gif(\?.*)?$/i;
+  const allowedDomains = /(tenor\.com|giphy\.com|cdn\.discordapp\.com)/i;
+
+  if (
+    linkPattern.test(message.content) &&
+    !gifPattern.test(message.content) &&
+    !allowedDomains.test(message.content)
+  ) {
     try {
       await message.delete();
       await message.channel.send({
@@ -149,8 +154,6 @@ client.on("messageCreate", async (message) => {
   }
 
   if (!message.content.startsWith(prefix)) return;
-
-  // ha csak a prefixet írja be valaki, ne válaszoljon
   if (message.content.trim() === prefix) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
