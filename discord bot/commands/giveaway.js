@@ -240,7 +240,7 @@ module.exports = {
           }
 
           const updatedEmbed = new EmbedBuilder()
-            .setTitle("<a:nyeremenyjatek:1419291413127888956> Nyereményjáték")
+            .setTitle("🎉Nyereményjáték")
             .setDescription(
               `**Nyeremény:** ${prize}\n**Nyertesek száma:** ${winnerCount}\n**Hátralévő idő:** ${formatTime(
                 remaining
