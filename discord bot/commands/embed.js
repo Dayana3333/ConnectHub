@@ -42,7 +42,7 @@ async function sendEmbed(message, text) {
         name: `${message.author.username} üzenete`,
         iconURL: message.author.displayAvatarURL(),
       })
-      .setTitle(`<:newconnectlogo:1414494951294636102> - ConnectHub`) // Rövid cím
+      .setTitle(`🌐 - ConnectHub`) // Rövid cím
       .setDescription(text)      // Ide tesszük a teljes szöveget
       .setColor("#042632")
       .setTimestamp();
