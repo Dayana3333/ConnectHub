@@ -54,6 +54,10 @@ const watch = require("./events/watch.js");
 const logHandler = require("./events/logHandler.js");
 watch.execute(client);
 
+//Attach spam.js for spam detection
+const spam = require("./events/spam.js")
+spam.execute(client)
+
 // ---------------------- ADATOK MENTÉSE ----------------------
 const giveawayFile = path.join(__dirname, "giveawayChannels.json");
 let giveawayChannels = {};
