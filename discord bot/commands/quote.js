@@ -23,7 +23,7 @@ module.exports = {
         .setColor(randomColor)
         .setTitle('🎬 Random Quote 🎮')
         .setDescription(`"${quote}"\n— **${author}**`)
-        .setFooter({ text: 'Powered by QuoteGarden API' });
+        .setFooter({ text: 'Powered by Kanye API' });
 
       await interaction.editReply({ embeds: [embed] });
 
