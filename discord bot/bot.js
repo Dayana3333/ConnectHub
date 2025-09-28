@@ -5,6 +5,8 @@ const {
   Partials,
   Collection,
   ActivityType,
+  REST,
+  Routes
 } = require("discord.js");
 const fs = require("fs");
 const path = require("path");
@@ -25,21 +27,64 @@ const client = new Client({
 
 const prefix = ".";
 client.commands = new Collection();
+client.slashCommands = new Collection();
 
-// ---------------------- PARANCSOK BETÖLTÉSE ----------------------
+/// ---------------------- PARANCSOK BETÖLTÉSE ----------------------
 const commandsPath = path.join(__dirname, "commands");
 if (fs.existsSync(commandsPath)) {
-  const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith(".js"));
+  const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith(".js"));
   for (const file of commandFiles) {
     const command = require(path.join(commandsPath, file));
+
+    // Prefix commands
     if (command.name && command.execute) {
       client.commands.set(command.name, command);
       console.log(`✅ Betöltve: ${command.name}`);
-    } else {
-      console.warn(`⚠️ Hibás command fájl: ${file}`);
+    }
+
+    // Slash commands
+    if (command.data && command.execute) {
+      client.slashCommands.set(command.data.name, command);
+      console.log(`✅ Slash command loaded: ${command.data.name}`);
     }
   }
 }
+
+// ---------------------- SLASH COMMAND REGISTRATION ----------------------
+const rest = new REST({ version: "10" }).setToken(config.token);
+
+(async () => {
+  try {
+    console.log("⚡ Registering slash commands...");
+    await rest.put(
+      Routes.applicationGuildCommands(config.clientId, config.guildId),
+      { body: client.slashCommands.map(cmd => cmd.data.toJSON()) }
+    );
+    console.log("✅ Slash commands registered!");
+  } catch (err) {
+    console.error("❌ Slash command registration error:", err);
+  }
+})();
+
+// ---------------------- INTERACTION HANDLER ----------------------
+client.on("interactionCreate", async interaction => {
+  if (!interaction.isCommand()) return;
+
+  const command = client.slashCommands.get(interaction.commandName);
+  if (!command) return;
+
+  try {
+    await command.execute(interaction);
+  } catch (err) {
+    console.error(err);
+    if (!interaction.replied) {
+      await interaction.reply({
+        content: "❌ Hiba történt a parancs futtatása közben.",
+        ephemeral: true,
+      });
+    }
+  }
+});
 
 // Attach watch.js for bad word filtering RICSI TETTE IDE
 const watch = require("./events/watch.js");
