@@ -58,8 +58,9 @@ module.exports.execute = (client) => {
                     }
                     setTimeout(async () => {
                         try {
-                            if (member.roles.cache.has(mutedRole.id)) {
-                                await member.roles.remove(mutedRole, "5 perces mute lejárt");
+                            const freshMember = await message.guild.members.fetch(member.id);
+                            if (freshMember.roles.cache.has(mutedRole.id)) {
+                                await freshMember.roles.remove(mutedRole, "5 perces mute lejárt");
                             }
                         } catch (err) {
                             await message.channel.send(`Nem sikerült levenni a némítást: ${err.message}`)
