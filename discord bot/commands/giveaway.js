@@ -259,11 +259,11 @@ module.exports = {
 
         collector.on("collect", async (i) => {
           if (participants.has(i.user.id)) {
-            i.reply({ content: "❌ Már részt veszel!", ephemeral: true });
+            await i.reply({ content: "❌ Már részt veszel!", flags: 64 });
             return;
           }
           participants.add(i.user.id);
-          i.reply({ content: "✅ Sikeresen csatlakoztál!", ephemeral: true });
+          await i.reply({ content: "✅ Sikeresen csatlakoztál!", flags: 64 });
         });
 
         collector.on("end", endGiveaway);
