@@ -15,7 +15,7 @@ module.exports = {
       // PARTNER LISTA – bárki használhatja
       if (query === "lista" || query === "all") {
         const partnerChannels = new Map([
-          ['connectbot', {name: "ConnectBot", channelId: "1421160921937739786", messageId: "" }],
+//          ['connectbot', {name: "ConnectBot", channelId: "1421160921937739786", messageId: "" }],
           ['dcwith', { name: "DCWITH", channelId: "1414498372227694593", messageId: "1414644090108252261"}], 
           ['geri84vok', { name: "geri84vok", channelId: "1414027188952633444", messageId: "1414703667797430435" }],
           ['elitelands', { name: "EliteLands", channelId: "1414027188952633444", messageId: "1415230719977848874" }],
