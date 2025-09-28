@@ -1,4 +1,4 @@
-/*
+
 const fs = require('fs');
 const { EmbedBuilder, ChannelType } = require('discord.js');
 
@@ -36,4 +36,3 @@ module.exports = (bot) => {
     }
   });
 };
-*/
