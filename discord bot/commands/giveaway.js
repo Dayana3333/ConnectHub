@@ -75,31 +75,6 @@ module.exports = {
   async execute(message, args) {
     const commandName = message.content.slice(1).split(/ +/)[0].toLowerCase();
 
-    // ---------------------- GIVEAWAY ROLE ADD/DEL ----------------------
-    if (commandName === "nyroleadd") {
-      const role = message.mentions.roles.first();
-      if (!role) return message.reply("❌ Adj meg egy rangot!");
-      if (!giveawayRoles[message.guild.id]) giveawayRoles[message.guild.id] = [];
-      if (giveawayRoles[message.guild.id].includes(role.id))
-        return message.reply("⚠️ Ez a rang már hozzá van adva.");
-      giveawayRoles[message.guild.id].push(role.id);
-      saveRoles();
-      return message.reply(`✅ Hozzáadva a nyereményjáték admin rangokhoz: ${role}`);
-    }
-
-    if (commandName === "nyroledel") {
-      const role = message.mentions.roles.first();
-      if (!role) return message.reply("❌ Adj meg egy rangot!");
-      if (!giveawayRoles[message.guild.id]) giveawayRoles[message.guild.id] = [];
-      giveawayRoles[message.guild.id] = giveawayRoles[message.guild.id].filter(
-        (r) => r !== role.id
-      );
-      saveRoles();
-      return message.reply(
-        `🗑️ Eltávolítva a nyereményjáték admin rangok közül: ${role}`
-      );
-    }
-
     // ---------------------- NYEREMÉNYJÁTÉK ----------------------
     if (commandName === "nyeremenyjatek") {
       if (!hasGiveawayRole(message.member))
