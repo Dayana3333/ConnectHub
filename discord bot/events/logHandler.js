@@ -12,7 +12,6 @@ function getLogSettings(guildId) {
   }
 }
 module.exports.execute = (client) => {
-  console.log("Loaded events/logHandler.js");
   // Üzenet létrehozás logolása
   client.on("messageCreate", async (message) => {
     try {
