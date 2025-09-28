@@ -54,16 +54,15 @@ module.exports.execute = (client) => {
                         await member.roles.add(mutedRole, "Spam - 5 perces mute");
                         await message.channel.send(`${message.author} 5 percre lenémítva. 🔇`);
                     } catch (err) {
-                        console.error("Nem sikerült role-t adni:", err);
+                        await message.channel.send(`Nem sikerült némítani: ${err.message}`)
                     }
                     setTimeout(async () => {
                         try {
                             if (member.roles.cache.has(mutedRole.id)) {
                                 await member.roles.remove(mutedRole, "5 perces mute lejárt");
-                                await sendDM(message.author, "✅ Lejárt az 5 perces némításod.");
                             }
                         } catch (err) {
-                            console.error("Error removing mute:", err);
+                            await message.channel.send(`Nem sikerült levenni a némítást: ${err.message}`)
                         }
                     }, 5 * 60 * 1000);
                 } else {
