@@ -3,7 +3,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('quote')
-    .setDescription('Küldj egy random idézetet'),
+    .setDescription('Küldd egy random idézetet'),
 
   async execute(interaction) {
     await interaction.deferReply();
@@ -13,8 +13,8 @@ module.exports = {
       if (!response.ok) throw new Error(`API error: ${response.status}`);
 
       const data = await response.json();
-      const quote = data.quote || "Nincs idézet elérhető."; // ✅ kanye.rest provides 'quote'
-      const author = "Kanye West"; // static, because API doesn’t return author
+      const quote = data.quote || "Nincs idézet elérhető.";
+      const author = "Kanye West"; 
 
       const randomColor = Math.floor(Math.random() * 16777215);
 

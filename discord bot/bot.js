@@ -45,24 +45,24 @@ if (fs.existsSync(commandsPath)) {
     // Slash commands
     if (command.data && command.execute) {
       client.slashCommands.set(command.data.name, command);
-      console.log(`✅ Slash command loaded: ${command.data.name}`);
+      console.log(`✅ Slash command betöltve: ${command.data.name}`);
     }
   }
 }
 
-// ---------------------- SLASH COMMAND REGISTRATION ----------------------
+// ---------------------- SLASH COMMAND REGISZTRÁLÁSA ----------------------
 const rest = new REST({ version: "10" }).setToken(config.token);
 
 (async () => {
   try {
-    console.log("⚡ Registering slash commands...");
+    console.log("⚡ Slash command regisztrálása...");
     await rest.put(
       Routes.applicationGuildCommands(config.clientId, config.guildId),
       { body: client.slashCommands.map(cmd => cmd.data.toJSON()) }
     );
-    console.log("✅ Slash commands registered!");
+    console.log("✅ Slash command regisztrálva!");
   } catch (err) {
-    console.error("❌ Slash command registration error:", err);
+    console.error("❌ Slash command regisztárciós hiba:", err);
   }
 })();
 
@@ -86,7 +86,7 @@ client.on("interactionCreate", async interaction => {
   }
 });
 
-// Attach watch.js for bad word filtering RICSI TETTE IDE
+// Attach watch.js for bad word filtering 
 const watch = require("./events/watch.js");
 watch.execute(client);
 
