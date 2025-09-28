@@ -10,7 +10,7 @@ module.exports = {
     await interaction.deferReply();
 
     try {
-      const response = await fetch('https://api.quotable.io');
+      const response = await fetch('https://api.kanye.rest/');
       if (!response.ok) throw new Error(`API error: ${response.status}`);
 
       const data = await response.json();
