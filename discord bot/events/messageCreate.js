@@ -1,4 +1,4 @@
-
+/*
 const fs = require('fs');
 const path = require('path');
 const { PermissionsBitField, EmbedBuilder } = require('discord.js');
@@ -111,3 +111,4 @@ module.exports = (bot) => {
     }
   });
 };
+*/
