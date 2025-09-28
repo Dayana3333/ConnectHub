@@ -33,6 +33,7 @@ module.exports = {
         { name: 'Státusz', value: 'Minden figyelmeztetés törölve ✅', inline: false }
       )
       .setTimestamp();
+      message.reply("✅ Warnok sikeresen nullázva!");
 
     // ==== CSATORNÁBA LOGOLÁS ====
     try {
@@ -45,7 +46,6 @@ module.exports = {
     } catch (err) {
       console.error(`Nem sikerült logolni reset/warn: ${err.message}`);
     }
-
     return;
   },
 };

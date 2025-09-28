@@ -33,12 +33,13 @@ module.exports = {
         { name: 'Warnok száma', value: `${warns}`, inline: true }
       )
       .setTimestamp();
+      message.reply("✅ Warn sikeresen kiosztva!");
 
     // ==== CSATORNÁBA LOGOLÁS ====
     try {
       const logChannel = await message.guild.channels.fetch(LOG_CHANNEL_ID);
       if (!logChannel) {
-        console.log(`Log csatorna nem található: ${LOG_CHANNEL_ID}`);
+        console.log(`Log csatorna nem találahtó: ${LOG_CHANNEL_ID}`);
       } else {
         await logChannel.send({ embeds: [embed] });
       }
@@ -46,6 +47,7 @@ module.exports = {
       console.error(`Nem sikerült logolni reset/warn: ${err.message}`);
     }
 
+  
     // ======= SZANKCIÓK =======
     try {
       if (warns === 3) {
