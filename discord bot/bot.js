@@ -6,7 +6,8 @@ const {
   Collection,
   ActivityType,
   REST,
-  Routes
+  Routes,
+  PermissionsBitField
 } = require("discord.js");
 const fs = require("fs");
 const path = require("path");
@@ -152,6 +153,8 @@ client.on("messageCreate", async (message) => {
     !gifPattern.test(message.content) &&
     !allowedDomains.test(message.content)
   ) {
+    // Ha nincs admin jog, csak akkor törölje
+    if (!message.member.permissions.has(PermissionsBitField.Flags.Administrator))
     try {
       await message.delete();
       await message.channel.send({
