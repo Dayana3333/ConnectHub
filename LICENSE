@@ -4,21 +4,20 @@ Copyright (c) 2026 Dayana
 
 All rights reserved.
 
-This software and its source code are made available solely for viewing and inspection purposes.
+This software and its source code are provided for viewing and educational purposes only.
 
-Permission is hereby granted to any person to view and inspect this software and its source code for personal, non-commercial, informational purposes only, subject to the following conditions:
+Permission is granted to any person to access, view, and study the source code for personal, non-commercial, informational use, subject to the following restrictions:
 
-You are NOT permitted to:
-- use this software or its source code in any form, whether commercial or non-commercial
-- copy, modify, merge, publish, distribute, sublicense, or sell copies of the software or its source code
-- incorporate this software or its source code into any other project, software, or service
-- use this software or its source code for training, fine-tuning, or evaluating machine learning models or datasets
-- reverse engineer or create derivative works based on this software or its source code
+You may NOT:
+- use this software or any part of its source code in any project or service
+- copy, reproduce, or redistribute the software or its source code
+- modify, adapt, or create derivative works based on this software
+- publish, sublicense, or sell this software or any part of it
+- incorporate this code into other projects, whether public or private
+- use this software or its source code for training or evaluating machine learning models
 
-This software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement.
+This software is provided "as is", without warranty of any kind, express or implied, including but not limited to merchantability, fitness for a particular purpose, and non-infringement.
 
-In no event shall the author or copyright holder be liable for any claim, damages, or other liability arising from the use or viewing of the software.
+In no event shall the author be liable for any claim, damages, or other liability arising from the use or misuse of this software.
 
-Any unauthorized use of this software or its source code is strictly prohibited and may result in legal action.
-
----
+Any use outside the terms of this license requires explicit prior permission from the author.
