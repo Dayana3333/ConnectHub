@@ -11,7 +11,6 @@ module.exports = {
     bot.user.setPresence({
       activities: [
         { name: 'ConnectHub', type: 0 },
-        { name: 'regedit_404 ⚒️ ', type: 2 },
       ],
       status: 'online',
     });

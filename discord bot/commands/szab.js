@@ -38,4 +38,3 @@ module.exports = {
   },
 };
 
-// <#1414223550805708964> 29. sor csere erre ConnectHub hibajegy

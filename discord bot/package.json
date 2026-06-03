@@ -2,7 +2,7 @@
   "name": "hub",
   "version": "1.2.2",
   "description": "ConnectHUb",
-  "main": "regedit404",
+  "main": "Dayana",
   "dependencies": {
     "discord-api-types": "^0.38.22",
     "discord.js": "^14.22.1",
@@ -17,6 +17,6 @@
     "type": "git",
     "url": "yes"
   },
-  "author": "regedit404",
+  "author": "Dayana",
   "license": "ISC"
 }
